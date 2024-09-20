@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class BulletMovementController : MonoBehaviour
 {
-    [SerializeField] private float m_BulletSpeed = 10f; 
+    [SerializeField] private BulletDataScript m_BulletData;
+    [SerializeField] private float m_BulletSpeed; 
     [SerializeField] private Rigidbody2D m_BulletRB;    
     private Transform m_TargetEnemy;                    
 
     private void Start()
     {
-        FindNearestEnemy();
-
+        FindEnemy();
+        m_BulletSpeed = m_BulletData.GetBulletSpeed();
         if (m_TargetEnemy != null)
         {
             Vector2 direction = (m_TargetEnemy.position - transform.position);
@@ -19,7 +20,7 @@ public class BulletMovementController : MonoBehaviour
         }
     }
 
-    private void FindNearestEnemy()
+    private void FindEnemy()
     {
         // find a enemy in the scene
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
@@ -32,16 +33,6 @@ public class BulletMovementController : MonoBehaviour
         //set the target
         m_TargetEnemy = enemy.transform;
         
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // enemy hit by bullet
-        if (collision.CompareTag("Enemy"))
-        {
-            //destroy bullet
-            Destroy(gameObject);
-        }
     }
 }
 
