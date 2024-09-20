@@ -875,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fd58fe0bd431c48971f277151c3049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerHealthText: {fileID: 1285407175}
   m_PlayerHealth: 0
   m_PlayerData: {fileID: 1714852069}
 --- !u!114 &1714852071
