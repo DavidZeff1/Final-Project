@@ -6,8 +6,8 @@ using UnityEngine;
 public class Character : ScriptableObject
 {
     public string characterName;
-    public int health;
+    public float health;
     public float movementSpeed;
-    public Sprite characterSprite;
+    public float damage;
 }
 

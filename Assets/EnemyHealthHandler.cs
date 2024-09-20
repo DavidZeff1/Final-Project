@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemyHealthHandler : MonoBehaviour
 {
-    [SerializeField] private float m_EnemyHealth = 5;
-
+    [SerializeField] private float m_EnemyHealth;
+    [SerializeField] private EnemyDataScript m_EnemyData;
+    public void Start()
+    {
+        m_EnemyHealth = m_EnemyData.GetEnemyHealth();
+    }
     public float GetEnemyHealth()
     {
         return m_EnemyHealth;
