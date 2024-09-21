@@ -868,7 +868,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1714852067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CharacterData: {fileID: 11400000, guid: ba3ab4cad286ca849b35290116596731, type: 2}
-  m_MovementSpeed: 0
+  m_MovementSpeed: 300
   m_PlayerRigidBody: {fileID: 1714852066}
   m_Animator: {fileID: 1714852072}
 --- !u!58 &1714852068
