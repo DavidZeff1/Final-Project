@@ -22,6 +22,12 @@ public class ShootHandler : MonoBehaviour
            Instantiate(m_BulletPrefab, m_GunTransform.position, m_GunTransform.rotation);
         }
     }
+    public void UpdateShootingInterval(float newInterval)
+    {
+        CancelInvoke(nameof(ShootAtEnemies));
+        m_ShootingInterval = newInterval;
+        InvokeRepeating(nameof(ShootAtEnemies), m_ShootingInterval, m_ShootingInterval);
+    }
 }
 
 

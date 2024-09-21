@@ -217,6 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyPrefab: {fileID: 7439698398301417657, guid: fc98d7c7ed0dee248ae0e6a47e5f496f, type: 3}
+  m_WeaponSpeedUpPrefab: {fileID: 5693978519828893228, guid: 78debb7453c9de34d9ebd0961794fb5b, type: 3}
+  m_HealthPotionpPrefab: {fileID: 4618310552672842997, guid: e18535997c72cd043964ecdfbe8066c7, type: 3}
   m_PlayerTransform: {fileID: 1714852064}
   m_SpawnRadius: 5
   m_SpawnInterval: 5
@@ -646,7 +648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.7, y: 43.3}
+  m_AnchoredPosition: {x: -53.4, y: 89.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1285407175
@@ -678,8 +680,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -696,14 +698,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_fontStyle: 17
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -763,6 +765,7 @@ GameObject:
   - component: {fileID: 1714852070}
   - component: {fileID: 1714852069}
   - component: {fileID: 1714852072}
+  - component: {fileID: 1714852073}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -911,7 +914,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -943,7 +946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerHealthText: {fileID: 1285407175}
-  m_PlayerHealth: 0
+  m_PlayerMaxHealth: 15
+  m_PlayerHealth: 15
   m_PlayerData: {fileID: 1714852069}
 --- !u!114 &1714852071
 MonoBehaviour:
@@ -959,6 +963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerHealthHandler: {fileID: 1714852070}
   m_SpriteRenderer: {fileID: 1714852065}
+  M_damageCooldown: 0.2
 --- !u!95 &1714852072
 Animator:
   serializedVersion: 5
@@ -980,6 +985,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1714852073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714852062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bd0752804e9484fb6a8ae5e7c9d161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UpgradeShootingSpeed: 0.5
+  m_AmountOfHealthToAdd: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerHealthController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_PlayerHealthText;
+    [SerializeField] private float m_PlayerMaxHealth;
     [SerializeField] private float m_PlayerHealth;
     [SerializeField] private PlayerDataScript m_PlayerData;
     private void Start()
@@ -22,7 +23,7 @@ public class PlayerHealthController : MonoBehaviour
     public void SetPlayerHealth(float m_HealthToAdd)
     {
         UpdateHealthText();
-        m_PlayerHealth += m_HealthToAdd;
+        m_PlayerHealth= ( ( m_PlayerHealth + m_HealthToAdd) > m_PlayerMaxHealth) ? m_PlayerMaxHealth : (m_PlayerHealth + m_HealthToAdd);
     }
 
     private void UpdateHealthText()
