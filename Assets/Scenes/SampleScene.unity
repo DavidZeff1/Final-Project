@@ -881,6 +881,7 @@ MonoBehaviour:
   m_CharacterData: {fileID: 11400000, guid: ba3ab4cad286ca849b35290116596731, type: 2}
   m_MovementSpeed: 0
   m_PlayerRigidBody: {fileID: 1714852066}
+  m_Animator: {fileID: 1714852072}
 --- !u!58 &1714852068
 CircleCollider2D:
   m_ObjectHideFlags: 0
