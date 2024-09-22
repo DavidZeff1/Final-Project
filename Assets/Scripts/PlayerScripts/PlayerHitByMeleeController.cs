@@ -12,6 +12,22 @@ public class PlayerHitByMeleeController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Bullet"))
+        {
+            GameObject Bullet = collision.gameObject;
+            BulletMovementController bulletMovementController = Bullet.GetComponent<BulletMovementController>();
+            if(bulletMovementController.GetTarget().Equals("Player") && m_CanTakeDamage)
+            {
+                m_PlayerHealthHandler.SetPlayerHealth(-1);
+                m_PlayerHealthHandler.GetPlayerHealth();
+                if (m_PlayerHealthHandler.GetPlayerHealth() <= 0)
+                {
+                    Destroy(gameObject);
+                }
+                StartCoroutine(DamageCooldown());
+                StartCoroutine(ChangeColorTemporarily());
+            }
+        }
         if (collision.CompareTag("Enemy") && m_CanTakeDamage)
         {
             m_PlayerHealthHandler.SetPlayerHealth(-1);

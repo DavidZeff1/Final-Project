@@ -6,27 +6,29 @@ public class ShootHandler : MonoBehaviour
 {
     [SerializeField] private GameObject m_BulletPrefab;   
     [SerializeField] private Transform m_GunTransform;    
-    [SerializeField] float m_ShootingInterval = 1f;                
+    [SerializeField] float m_ShootingInterval = 1f;
+    [SerializeField] private string m_Target;
 
     private void Start()
     {
-        InvokeRepeating(nameof(ShootAtEnemies), m_ShootingInterval, m_ShootingInterval);
+        InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
     }
 
-    private void ShootAtEnemies()
+    private void ShootAtTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(m_Target);
 
-        if (enemies.Length > 0)
+        if (targets.Length > 0)
         {
-           Instantiate(m_BulletPrefab, m_GunTransform.position, m_GunTransform.rotation);
+          GameObject Bullet =  Instantiate(m_BulletPrefab, m_GunTransform.position, m_GunTransform.rotation);
+          Bullet.GetComponent<BulletMovementController>().SetTarget(m_Target);
         }
     }
     public void UpdateShootingInterval(float newInterval)
     {
-        CancelInvoke(nameof(ShootAtEnemies));
+        CancelInvoke(nameof(ShootAtTarget));
         m_ShootingInterval = newInterval;
-        InvokeRepeating(nameof(ShootAtEnemies), m_ShootingInterval, m_ShootingInterval);
+        InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
     }
 }
 

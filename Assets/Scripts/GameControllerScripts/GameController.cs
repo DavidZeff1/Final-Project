@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject m_EnemyPrefab;
+    [SerializeField] private GameObject m_ShootingEnemyPrefab;
     [SerializeField] private GameObject m_WeaponSpeedUpPrefab;
     [SerializeField] private GameObject m_HealthPotionpPrefab;
     [SerializeField] private Transform m_PlayerTransform; 
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
         InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
         InvokeRepeating(nameof(SpawnWeaponSpeedUp), 2f, m_SpawnInterval);
         InvokeRepeating(nameof(SpawnHealthPotion), 3f, m_SpawnInterval);
+        InvokeRepeating(nameof(SpawnShootingEnemyPotion), 4f, m_SpawnInterval);
     }
 
     private void SpawnWithinCircleRadiusOfPlayer(GameObject i_ObjectToSpawn)
@@ -36,6 +38,10 @@ public class GameController : MonoBehaviour
     private void SpawnHealthPotion()
     {
         SpawnWithinCircleRadiusOfPlayer(m_HealthPotionpPrefab);
+    }
+    private void SpawnShootingEnemyPotion()
+    {
+        SpawnWithinCircleRadiusOfPlayer(m_ShootingEnemyPrefab);
     }
 
 }
