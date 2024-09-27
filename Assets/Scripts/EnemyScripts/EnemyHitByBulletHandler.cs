@@ -12,23 +12,19 @@ public class EnemyHitByBulletHandler : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-            // Get the BulletDataScript from the colliding bullet
             BulletDataScript bulletScript = collision.GetComponent<BulletDataScript>();
             if (bulletScript != null)
             {
-                // Get the bullet damage from the BulletDataScript
                 float bulletDamage = bulletScript.GetBulletDamage();
 
-                // Reduce enemy health
                 m_EnemyHealthHandler.SetEnemyHealth(-bulletDamage);
 
-                // Check if the enemy's health is less than or equal to 0
+                
                 if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
                 {
-                    Destroy(gameObject); // Destroy the enemy
+                    Destroy(gameObject); 
                 }
 
-                // Start the color change coroutine
                 StartCoroutine(ChangeColorTemporarily());
             }
         }
