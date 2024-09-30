@@ -9,6 +9,7 @@ TagManager:
   - MeleeWeapon
   - WeaponSpeedUpPotion
   - HealthPotion
+  - Fireball
   layers:
   - Default
   - TransparentFX

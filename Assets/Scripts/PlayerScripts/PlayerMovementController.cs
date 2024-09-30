@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine;
+
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] Character m_CharacterData;
@@ -12,20 +14,15 @@ public class PlayerMovementController : MonoBehaviour
     private float m_DeltaX;
     private float m_DeltaY;
 
-
-    private void Start()
-    {
-        //m_MovementSpeed = m_CharacterData.movementSpeed;
-    }
-
     private void FixedUpdate()
     {
-        m_DeltaX = Input.GetAxis(nameof(InputStr.Horizontal));
-        m_DeltaY = Input.GetAxis(nameof(InputStr.Vertical));
-        
-        m_Movement = new Vector2(m_DeltaX, m_DeltaY) * m_MovementSpeed * Time.deltaTime;
+        m_DeltaX = 0;
+        m_DeltaY = 0;
 
-        //m_PlayerRigidBody.velocity = (m_Movement) * m_MovementSpeed;       
+        GetHorizontalArrowKey();
+        GetVerticalArrowKey();
+
+        m_Movement = m_MovementSpeed * Time.deltaTime * new Vector2(m_DeltaX, m_DeltaY);
         m_PlayerRigidBody.velocity = m_Movement;
 
         if (m_Movement.magnitude > 0)
@@ -37,16 +34,40 @@ public class PlayerMovementController : MonoBehaviour
             m_Animator.SetBool(nameof(AnimationParams.IsMoving), false);
         }
 
-    }
 
+    }
     public enum InputStr
     {
         Horizontal,
         Vertical
     }
-    
+
     enum AnimationParams
     {
         IsMoving
     }
+
+    private void GetVerticalArrowKey()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            m_DeltaY = 1;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            m_DeltaY = -1;
+        }
+    }
+    private void GetHorizontalArrowKey()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            m_DeltaX = -1;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            m_DeltaX = 1;
+        }
+    }
 }
+
