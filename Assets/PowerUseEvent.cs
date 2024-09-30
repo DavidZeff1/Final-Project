@@ -8,9 +8,6 @@ public class PowerUseEvent : ScriptableObject
 
     public void Raise(int powerIndex)
     {
-        if (OnPowerUsed != null)
-        {
-            OnPowerUsed(powerIndex);
-        }
+        OnPowerUsed?.Invoke(powerIndex);
     }
 }

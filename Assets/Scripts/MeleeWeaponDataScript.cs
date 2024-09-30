@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MeleeWeaponDataScript : MonoBehaviour
 {
-    [SerializeField] private BulletData m_BulletData;
+    [SerializeField] private BulletDataSO m_BulletData;
     public float GetBulletDamage()
     {
         return m_BulletData.damageAmount;

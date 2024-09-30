@@ -10,12 +10,14 @@ public class EnemyHitByBulletHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
+        GameObject Bullet = collision.gameObject;
+        BulletDataScript bulletData = Bullet.GetComponent<BulletDataScript>();
+
+        if (collision.CompareTag("Bullet") && bulletData != null && bulletData.GetBulletTarget().Equals("Enemy"))
         {
-            if (collision.TryGetComponent<BulletDataScript>(out var bulletScript))
+            if (bulletData != null)
             {
-                float bulletDamage = bulletScript.GetBulletDamage();
-                m_EnemyHealthHandler.SetEnemyHealth(-bulletDamage);
+                m_EnemyHealthHandler.SetEnemyHealth(-bulletData.GetBulletDamage());
 
                 if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
                 {
@@ -29,8 +31,7 @@ public class EnemyHitByBulletHandler : MonoBehaviour
         {
             if (collision.TryGetComponent<BulletDataScript>(out var bulletScript))
             {
-                float bulletDamage = bulletScript.GetBulletDamage();
-                m_EnemyHealthHandler.SetEnemyHealth(-bulletDamage);
+                m_EnemyHealthHandler.SetEnemyHealth(-bulletData.GetBulletDamage());
 
                 if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
                 {

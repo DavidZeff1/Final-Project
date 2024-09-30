@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class BulletCollisionController : MonoBehaviour
 {
-    BulletMovementController m_Controller;
+    BulletDataScript m_BulletDataS;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        m_Controller = GetComponent<BulletMovementController>();
+        m_BulletDataS = GetComponent<BulletDataScript>();
 
-
-        // target hit by bullet
-        if (collision.CompareTag(m_Controller.GetTarget()))
+        if (collision.CompareTag(m_BulletDataS.GetBulletTarget()))
         {
-            //destroy bullet
             Destroy(gameObject);
         }
     }

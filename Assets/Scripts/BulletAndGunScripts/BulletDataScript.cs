@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletDataScript : MonoBehaviour
 {
-    [SerializeField] private BulletData m_BulletData;
+    [SerializeField] private BulletDataSO m_BulletData;
     public float GetBulletDamage()
     {
         return m_BulletData.damageAmount;
@@ -16,5 +16,9 @@ public class BulletDataScript : MonoBehaviour
     public string GetBulletName()
     {
         return m_BulletData.bulletName;
+    }
+    public string GetBulletTarget()
+    {
+        return m_BulletData.target;
     }
 }

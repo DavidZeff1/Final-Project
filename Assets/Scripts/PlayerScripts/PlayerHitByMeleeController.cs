@@ -15,15 +15,18 @@ public class PlayerHitByMeleeController : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             GameObject Bullet = collision.gameObject;
-            BulletMovementController bulletMovementController = Bullet.GetComponent<BulletMovementController>();
-            if(bulletMovementController.GetTarget().Equals("Player") && m_CanTakeDamage)
+            BulletDataScript bulletData = Bullet.GetComponent<BulletDataScript>();
+
+            if(bulletData.GetBulletTarget().Equals("Player") && m_CanTakeDamage)
             {
-                m_PlayerHealthHandler.SetPlayerHealth(-1);
+                m_PlayerHealthHandler.SetPlayerHealth(-bulletData.GetBulletDamage());
                 m_PlayerHealthHandler.GetPlayerHealth();
+
                 if (m_PlayerHealthHandler.GetPlayerHealth() <= 0)
                 {
                     Destroy(gameObject);
                 }
+
                 StartCoroutine(DamageCooldown());
                 StartCoroutine(ChangeColorTemporarily());
             }
@@ -32,10 +35,12 @@ public class PlayerHitByMeleeController : MonoBehaviour
         {
             m_PlayerHealthHandler.SetPlayerHealth(-1);
             m_PlayerHealthHandler.GetPlayerHealth();
+
             if (m_PlayerHealthHandler.GetPlayerHealth() <= 0)
             {
                 Destroy(gameObject);
             }
+
             StartCoroutine(DamageCooldown());
             StartCoroutine(ChangeColorTemporarily());
         }
