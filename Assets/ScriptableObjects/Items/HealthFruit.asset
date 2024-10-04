@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ItemName: Health Fruit
   m_SpriteIcon: {fileID: 7293598183456022363, guid: 1ddc9afd21fec77489b1248d18f31b68, type: 3}
-  m_MaxStack: 1
+  m_MaxStack: 5
