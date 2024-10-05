@@ -6,12 +6,18 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] Character m_CharacterData;
-    [SerializeField] float m_MovementSpeed = 300f;
+    [SerializeField] float m_NormalMovementSpeed = 300f;
     [SerializeField] private Rigidbody2D m_PlayerRigidBody;
     [SerializeField] Animator m_Animator;
+    private float m_CurrentMovementSpeed;
     private Vector2 m_Movement;
     private float m_DeltaX;
     private float m_DeltaY;
+
+    private void Start()
+    {
+        m_CurrentMovementSpeed = m_NormalMovementSpeed;
+    }
 
     private void FixedUpdate()
     {
@@ -21,7 +27,7 @@ public class PlayerMovementController : MonoBehaviour
         GetHorizontalArrowKey();
         GetVerticalArrowKey();
 
-        m_Movement = m_MovementSpeed * Time.deltaTime * new Vector2(m_DeltaX, m_DeltaY);
+        m_Movement = m_CurrentMovementSpeed * Time.deltaTime * new Vector2(m_DeltaX, m_DeltaY);
         m_PlayerRigidBody.velocity = m_Movement;
 
         if (m_Movement.magnitude > 0)
@@ -68,5 +74,20 @@ public class PlayerMovementController : MonoBehaviour
             m_DeltaX = 1;
         }
     }
+
+
+    public void IncreaseSpeed(float i_SpeedBoost, float i_Duration)
+    {
+        m_CurrentMovementSpeed += i_SpeedBoost;
+        StartCoroutine(ResetSpeedAfterDuration(i_Duration));
+    }
+
+    private IEnumerator ResetSpeedAfterDuration(float i_Duration)
+    {
+        yield return new WaitForSeconds(i_Duration);
+        m_CurrentMovementSpeed = m_NormalMovementSpeed;
+        Debug.Log("Speed boost ended.");
+    }
+
 }
 

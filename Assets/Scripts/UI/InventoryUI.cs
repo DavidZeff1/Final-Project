@@ -62,22 +62,12 @@ public class InventoryUI : MonoBehaviour
     }
 
     private void AddNewItemUI(InventoryItem item, int quantity)
-    {
-        /*GameObject slot = Instantiate(inventorySlotPrefab, itemsParent);
-        slot.transform.Find("Icon").GetComponent<Image>().sprite = item.m_SpriteIcon;
-        slot.transform.Find("Quantity").GetComponent<Text>().text = quantity.ToString();
- 
-        itemUIs[item] = slot;
-        */
-
-        // Instantiate the inventory slot prefab in the parent container
+    {  
         GameObject slot = Instantiate(inventorySlotPrefab, itemsParent);
-
-        // Get the components from the slot prefab
         Image iconImage = slot.GetComponentInChildren<Image>();
         TextMeshProUGUI quantityText = slot.GetComponentInChildren<TextMeshProUGUI>();
+        Button slotButton = slot.GetComponent<Button>();
 
-        // Make sure item, iconImage, and quantityText are not null before using them
         if (item == null)
         {
             Debug.LogError("Item is null in AddNewItemUI!");
@@ -96,10 +86,49 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        // Set the icon and quantity text
+        
         iconImage.sprite = item.m_SpriteIcon;
         //quantityText.text = quantity > 1 ? quantity.ToString() : ""; doesnt show text for 1 item stack
         quantityText.text = quantity.ToString();
+
+        slotButton.onClick.AddListener(() => OnItemClicked(item));
+    }
+
+    private void OnItemClicked(InventoryItem item)
+    {
+        switch (item.itemType)
+        {
+            case ItemType.HEALTH:
+                UseHealthItem(item);
+                break;
+
+            case ItemType.SPEED_INCREASE:
+                UseSpeedIncreaseItem(item);
+                break;
+
+            default:
+                Debug.Log("Item type not handled.");
+                break;
+        }
+    }
+    private void UseHealthItem(InventoryItem item)
+    {
+        PlayerHealthController playerHealth = FindObjectOfType<PlayerHealthController>();
+        if (playerHealth != null)
+        {
+            playerHealth.SetPlayerHealth(item.effectAmount);
+            Debug.Log($"Used Health Item: Healed for {item.effectAmount}");
+        }
+    }
+
+    private void UseSpeedIncreaseItem(InventoryItem item)
+    {
+        PlayerMovementController playerMovement = FindObjectOfType<PlayerMovementController>();
+        if (playerMovement != null)
+        {
+            playerMovement.IncreaseSpeed(item.effectAmount, item.effectDuration);
+            Debug.Log($"Used Speed Increase Item: Boosted speed by {item.effectAmount} for {item.effectDuration} seconds");
+        }
     }
 
     private void UpdateItemUI(InventoryItem item, int quantity)
