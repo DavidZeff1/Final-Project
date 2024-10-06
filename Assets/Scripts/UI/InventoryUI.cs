@@ -111,7 +111,6 @@ public class InventoryUI : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.SetPlayerHealth(item.effectAmount);
-            Debug.Log($"Used Health Item: Healed for {item.effectAmount}");
         }
     }
 
@@ -121,7 +120,6 @@ public class InventoryUI : MonoBehaviour
         if (playerMovement != null)
         {
             playerMovement.IncreaseSpeed(item.effectAmount, item.effectDuration);
-            Debug.Log($"Used Speed Increase Item: Boosted speed by {item.effectAmount} for {item.effectDuration} seconds");
         }
     }
 
