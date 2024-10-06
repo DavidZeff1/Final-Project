@@ -1,44 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine;
+
 using UnityEngine;
 
 public class BossOneMovementController : MonoBehaviour
 {
     [SerializeField] private Character m_EnemyData;
-    private Transform m_PlayerTransform;
-    private Vector3 m_StartingPosition;
     private float m_MovementSpeed;
-    private float m_DistanceToPlayerThreshold = 1.0f; 
+    private Vector3 m_CurrentDirection;
+    private float m_ReverseCooldown = 0.5f; 
+    private float m_LastReversalTime;
 
     private void Start()
     {
-        m_StartingPosition = transform.position;
         m_MovementSpeed = m_EnemyData.movementSpeed;
-        m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        SetRandomCardinalDirection();
     }
 
     private void Update()
     {
-        if (m_PlayerTransform != null)
-        {
-            MoveTowardsPlayer();
+        MoveInCurrentDirection();
+    }
 
-            if (Vector3.Distance(transform.position, m_PlayerTransform.position) <= m_DistanceToPlayerThreshold)
-            {
-                TeleportBackToStart();
-            }
+    private void MoveInCurrentDirection()
+    {
+        transform.position += m_MovementSpeed * Time.deltaTime * m_CurrentDirection;
+    }
+
+    private void SetRandomCardinalDirection()
+    {
+        int directionIndex = UnityEngine.Random.Range(0, 4);
+
+        switch (directionIndex)
+        {
+            case 0:
+                m_CurrentDirection = Vector3.up; 
+                break;
+            case 1:
+                m_CurrentDirection = Vector3.down; 
+                break;
+            case 2:
+                m_CurrentDirection = Vector3.left; 
+                break;
+            case 3:
+                m_CurrentDirection = Vector3.right; 
+                break;
         }
     }
 
-    private void MoveTowardsPlayer()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Vector3 direction = (m_PlayerTransform.position - transform.position).normalized;
-        transform.position += m_MovementSpeed * Time.deltaTime * direction;
+        if (collision.CompareTag("BossBorder") && Time.time >= m_LastReversalTime + m_ReverseCooldown)
+        {
+            ReverseDirection();
+        }
     }
 
-    private void TeleportBackToStart()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        transform.position = m_StartingPosition;
+        if (collision.gameObject.CompareTag("BossBorder") && Time.time >= m_LastReversalTime + m_ReverseCooldown)
+        {
+            ReverseDirection();
+        }
+    }
+    private void ReverseDirection()
+    {
+        m_CurrentDirection = -m_CurrentDirection;
+        m_LastReversalTime = Time.time;
     }
 }
+
+
+
+
 

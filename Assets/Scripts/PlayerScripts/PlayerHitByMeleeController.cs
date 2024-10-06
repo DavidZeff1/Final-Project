@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHitByMeleeController : MonoBehaviour
@@ -8,7 +10,8 @@ public class PlayerHitByMeleeController : MonoBehaviour
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     private Color m_OriginalColor = Color.white;
     private bool m_CanTakeDamage = true; 
-    [SerializeField] private float M_damageCooldown = 0.2f;  
+    [SerializeField] private float M_damageCooldown = 0.2f;
+    [SerializeField] TextMeshProUGUI m_BossCountdownText;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,7 +27,7 @@ public class PlayerHitByMeleeController : MonoBehaviour
 
                 if (m_PlayerHealthHandler.GetPlayerHealth() <= 0)
                 {
-                    Destroy(gameObject);
+                    PlayerDeath(gameObject);
                 }
 
                 StartCoroutine(DamageCooldown());
@@ -38,13 +41,21 @@ public class PlayerHitByMeleeController : MonoBehaviour
 
             if (m_PlayerHealthHandler.GetPlayerHealth() <= 0)
             {
-                Destroy(gameObject);
+                PlayerDeath(gameObject);
             }
 
             StartCoroutine(DamageCooldown());
             StartCoroutine(ChangeColorTemporarily());
         }
     }
+
+    private void PlayerDeath(GameObject gameObject)
+    {
+        m_BossCountdownText.text = "Player Died. Game Over!";
+        m_BossCountdownText.color = Color.red;
+        Destroy(gameObject, 1f);
+    }
+
     private IEnumerator DamageCooldown()
     {
         m_CanTakeDamage = false; 
