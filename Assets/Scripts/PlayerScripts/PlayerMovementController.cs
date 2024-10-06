@@ -86,7 +86,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         yield return new WaitForSeconds(i_Duration);
         m_CurrentMovementSpeed = m_NormalMovementSpeed;
-        Debug.Log("Speed boost ended.");
     }
 
 }

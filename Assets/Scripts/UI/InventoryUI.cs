@@ -7,8 +7,8 @@ using UnityEngine.PlayerLoop;
 
 public class InventoryUI : MonoBehaviour
 {
-    public Transform itemsParent; 
-    public GameObject inventorySlotPrefab; 
+    public Transform itemsParent;
+    public GameObject inventorySlotPrefab;
 
     private readonly Dictionary<InventoryItem, GameObject> itemUIs = new Dictionary<InventoryItem, GameObject>();
 
@@ -27,18 +27,15 @@ public class InventoryUI : MonoBehaviour
         {
             Debug.LogError("InventoryManager not found!");
         }
-        //InventoryManager.Instance.OnItemAdded += HandleItemAdded;
-        //InventoryManager.Instance.OnItemRemoved += HandleItemRemoved;
-        //RefreshUI();
     }
 
     private void OnDisable()
     {
-        //InventoryManager.Instance.OnItemAdded -= HandleItemAdded;
-        //InventoryManager.Instance.OnItemRemoved -= HandleItemRemoved;
-        inventoryManager.OnItemAdded -= HandleItemAdded;
-        inventoryManager.OnItemRemoved -= HandleItemRemoved;
-
+        if (inventoryManager != null)
+        {
+            inventoryManager.OnItemAdded -= HandleItemAdded;
+            inventoryManager.OnItemRemoved -= HandleItemRemoved;
+        }
     }
 
     private void HandleItemAdded(InventoryItem item, int quantity)
@@ -62,36 +59,23 @@ public class InventoryUI : MonoBehaviour
     }
 
     private void AddNewItemUI(InventoryItem item, int quantity)
-    {  
+    {
         GameObject slot = Instantiate(inventorySlotPrefab, itemsParent);
         Image iconImage = slot.GetComponentInChildren<Image>();
         TextMeshProUGUI quantityText = slot.GetComponentInChildren<TextMeshProUGUI>();
         Button slotButton = slot.GetComponent<Button>();
 
-        if (item == null)
+        if (item == null || iconImage == null || quantityText == null)
         {
-            Debug.LogError("Item is null in AddNewItemUI!");
+            Debug.LogError("Missing component in AddNewItemUI!");
             return;
         }
 
-        if (iconImage == null)
-        {
-            Debug.LogError("Icon Image component is missing in the slot prefab!");
-            return;
-        }
-
-        if (quantityText == null)
-        {
-            Debug.LogError("Text component for quantity is missing in the slot prefab!");
-            return;
-        }
-
-        
         iconImage.sprite = item.m_SpriteIcon;
-        //quantityText.text = quantity > 1 ? quantity.ToString() : ""; doesnt show text for 1 item stack
         quantityText.text = quantity.ToString();
 
         slotButton.onClick.AddListener(() => OnItemClicked(item));
+        itemUIs[item] = slot;  
     }
 
     private void OnItemClicked(InventoryItem item)
@@ -101,16 +85,26 @@ public class InventoryUI : MonoBehaviour
             case ItemType.HEALTH:
                 UseHealthItem(item);
                 break;
-
             case ItemType.SPEED_INCREASE:
                 UseSpeedIncreaseItem(item);
                 break;
-
             default:
                 Debug.Log("Item type not handled.");
                 break;
         }
+
+        inventoryManager.RemoveItem(item, 1);
+        
+        if (inventoryContains(item))
+        {
+            UpdateItemUI(item, inventoryManager.GetInventory()[item]);
+        }
+        else
+        {
+            RefreshUI();
+        }
     }
+
     private void UseHealthItem(InventoryItem item)
     {
         PlayerHealthController playerHealth = FindObjectOfType<PlayerHealthController>();
@@ -135,12 +129,15 @@ public class InventoryUI : MonoBehaviour
     {
         if (inventoryContains(item))
         {
-            itemUIs[item].transform.Find("Quantity").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
-        }
-        else
-        {
-            Destroy(itemUIs[item]);
-            itemUIs.Remove(item);
+            if (quantity > 0)
+            {
+                itemUIs[item].transform.Find("Quantity").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
+            }
+            else
+            {
+                Destroy(itemUIs[item]);
+                itemUIs.Remove(item);
+            }
         }
     }
 
@@ -156,7 +153,7 @@ public class InventoryUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        //itemUIs.Clear();
+        itemUIs.Clear();
 
         foreach (var entry in inventoryManager.GetInventory())
         {

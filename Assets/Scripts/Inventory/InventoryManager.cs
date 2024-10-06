@@ -34,7 +34,7 @@ public class InventoryManager : MonoBehaviour
             inventory[item] = Mathf.Min(quantity, item.m_MaxStack);
         }
 
-        OnItemAdded?.Invoke(item, quantity);
+        OnItemAdded?.Invoke(item, inventory[item]);  
     }
 
     public void RemoveItem(InventoryItem item, int quantity = 1)
@@ -45,8 +45,20 @@ public class InventoryManager : MonoBehaviour
             if (inventory[item] <= 0)
             {
                 inventory.Remove(item);
+                OnItemRemoved?.Invoke(item, 0); 
             }
-            OnItemRemoved?.Invoke(item, quantity);
+            else
+            {
+                OnItemRemoved?.Invoke(item, inventory[item]);  
+            }
+        }
+    }
+
+    public void UseItem(InventoryItem item)
+    {
+        if (inventory.ContainsKey(item))
+        {
+            RemoveItem(item, 1);  
         }
     }
 
@@ -54,4 +66,5 @@ public class InventoryManager : MonoBehaviour
     {
         return inventory;
     }
+
 }
