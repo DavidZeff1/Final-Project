@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7545945565120362601}
   - component: {fileID: 5982669747506497400}
   - component: {fileID: 1671821981834550371}
+  - component: {fileID: 6682177972636300847}
   m_Layer: 0
   m_Name: Boss1
   m_TagString: Enemy
@@ -104,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyData: {fileID: 11400000, guid: e811ca50bc8af4740b08e662b5d7bd53, type: 2}
+  m_Animator: {fileID: 6682177972636300847}
 --- !u!114 &8765131040253399903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,3 +237,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &6682177972636300847
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804187849205409838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87da0da0d2c66014b8e10edd0ced2c84, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
