@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    public GameObject instructionsPanel; 
+
     public void PlayGame()
     {
         SceneManager.LoadScene("SampleScene");
@@ -15,7 +17,22 @@ public class MainMenuScript : MonoBehaviour
     }
     public void ShowInstructions()
     {
-        Debug.Log("Instructions Button Pressed!");
+        if (instructionsPanel != null)
+        {
+            instructionsPanel.SetActive(true); 
+        }
+        else
+        {
+            Debug.LogError("Instructions panel reference is missing in the Inspector!");
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && instructionsPanel.activeSelf)
+        {
+            instructionsPanel.SetActive(false);  
+        }
     }
 }
 
