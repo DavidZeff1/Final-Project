@@ -28,7 +28,7 @@ public class EnemyMovementController : MonoBehaviour
     {
         Vector3 direction = (m_PlayerTransform.position - transform.position).normalized;
 
-        transform.position += direction * m_MovementSpeed * Time.deltaTime;
+        transform.position += m_MovementSpeed * Time.deltaTime * direction;
     }
 }
 

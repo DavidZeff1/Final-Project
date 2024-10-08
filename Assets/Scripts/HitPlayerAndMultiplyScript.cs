@@ -17,7 +17,7 @@ public class HitPlayerAndMultiplyScript : MonoBehaviour
             Instantiate(m_MiniEnemyPrefab, leftPosition, Quaternion.identity);
             Instantiate(m_MiniEnemyPrefab, rightPosition, Quaternion.identity);
 
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, 0.2f);
         }
         
     }
