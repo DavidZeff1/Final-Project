@@ -10,7 +10,7 @@ public class TransitionScene : MonoBehaviour
 
     void Update()
     {
-        if (m_CountdownText.text == "Boss Killed, Level Completed!")
+        if (m_CountdownText.text == "Boss Killed, Level Completed!\nWill Be Transitioning to next level in a few seconds")
         {
             StartCoroutine(LoadNextScene());
         }
@@ -34,7 +34,6 @@ public class TransitionScene : MonoBehaviour
                 nextSceneName = "Victory Scene";
                 break;
             default:
-                Debug.LogWarning("No next scene defined for this level.");
                 yield break;  
         }
 
