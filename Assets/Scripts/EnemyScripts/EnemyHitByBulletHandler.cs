@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -54,12 +53,17 @@ public class EnemyHitByBulletHandler : MonoBehaviour
     {
         Destroy(gameObject);
 
-        if (m_IsBoss && m_CountdownText != null)
+        if (m_IsBoss)
         {
-            m_CountdownText.text = "Boss Killed, Level Completed!";
-            m_CountdownText.color = Color.red;
+            if (m_CountdownText != null)
+            {
+                m_CountdownText.text = "Boss Killed, Level Completed!\nWill Be Transitioning to next level in a few seconds";
+                m_CountdownText.color = Color.red;
+            }
+
         }
     }
+    
 
     private IEnumerator ChangeColorTemporarily(Color i_Color)
     {

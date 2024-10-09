@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    private int m_Scene = 0;
     [SerializeField] private GameObject m_EnemyPrefab;
     [SerializeField] private GameObject m_Boss1Prefab;
+    [SerializeField] private GameObject m_Boss2Prefab;
+    [SerializeField] private GameObject m_Boss3Prefab;
     [SerializeField] private GameObject m_ShootingEnemyPrefab;
     [SerializeField] private GameObject m_WeaponSpeedUpPrefab;
     [SerializeField] private GameObject m_HealthPotionpPrefab;
@@ -64,7 +68,21 @@ public class GameController : MonoBehaviour
     }
     private void SpawnBoss()
     {
-        SpawnWithinCircleRadiusOfPlayer(m_Boss1Prefab);
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        switch (sceneName)
+        {
+            case "Level 1 Scene":
+                SpawnWithinCircleRadiusOfPlayer(m_Boss1Prefab);
+                break;
+            case "Level 2 Scene":
+                SpawnWithinCircleRadiusOfPlayer(m_Boss2Prefab);
+                break;
+            case "Level 3 Scene":
+                SpawnWithinCircleRadiusOfPlayer(m_Boss3Prefab);
+                break;
+        }
+
     }
 
     private void SpawnEnemy2()
@@ -76,7 +94,7 @@ public class GameController : MonoBehaviour
     {
         while (m_CountdownTime > 0)
         {
-            m_BossCountdownText.text = Mathf.Ceil(m_CountdownTime).ToString();
+            m_BossCountdownText.text = m_CountdownTime.ToString();
             yield return new WaitForSeconds(1f);
             m_CountdownTime--;
         }

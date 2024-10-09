@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &27425582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyPrefab: {fileID: 7439698398301417657, guid: fc98d7c7ed0dee248ae0e6a47e5f496f, type: 3}
   m_Boss1Prefab: {fileID: 4804187849205409838, guid: 4453bf475619f1f42a6fbafbb14f3e35, type: 3}
+  m_Boss2Prefab: {fileID: 5349770198413784340, guid: 2f62197697c7cac44a34f39dc5c0d3cb, type: 3}
+  m_Boss3Prefab: {fileID: 866028618383641833, guid: 277b4700f6b12344a975b6ad28d10cc7, type: 3}
   m_ShootingEnemyPrefab: {fileID: 246680822940602709, guid: 5a7025baa2debf049897973448d17f78, type: 3}
   m_WeaponSpeedUpPrefab: {fileID: 5693978519828893228, guid: 78debb7453c9de34d9ebd0961794fb5b, type: 3}
   m_HealthPotionpPrefab: {fileID: 4618310552672842997, guid: e18535997c72cd043964ecdfbe8066c7, type: 3}
@@ -1226,7 +1228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: ESC To Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1744,7 +1746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &821039408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1814,6 +1816,7 @@ GameObject:
   - component: {fileID: 891575112}
   - component: {fileID: 891575114}
   - component: {fileID: 891575113}
+  - component: {fileID: 891575115}
   m_Layer: 5
   m_Name: BossCountdownText
   m_TagString: Untagged
@@ -1937,6 +1940,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891575111}
   m_CullTransparentMesh: 1
+--- !u!114 &891575115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891575111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e84c7d28bf9b14ca0b61be14bad847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CountdownText: {fileID: 891575113}
 --- !u!1 &945976707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,7 +2311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.9549, y: 68.77266}
+  m_AnchoredPosition: {x: -16, y: -102}
   m_SizeDelta: {x: 707.5436, y: 267.9966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298157633
