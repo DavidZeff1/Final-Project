@@ -8,7 +8,7 @@ public abstract class TransitionBase : MonoBehaviour
     [SerializeField] protected GameState targetState;
     public GameState TargetState { get { return targetState; }}
 
-   protected virtual void Awake()
+    protected virtual void Start()
     {
         sourceState = GetComponentInParent<GameState>();
         if(sourceState == null )

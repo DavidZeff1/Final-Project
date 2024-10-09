@@ -1,18 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuTransition : TransitionBase
+public class TransitionToPause : TransitionBase
 {
     [SerializeField] KeyCode key;
-    bool menuPressed = false;
-    bool canMenu = false;
+    bool menuPressed;
+    bool canMenu;
     GameStateChannel gameStateChannel;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         gameStateChannel = FindObjectOfType<Beacon>().gameStateChannel;
         gameStateChannel.StateEnter += StateEnter;
     }
@@ -20,7 +19,6 @@ public class MenuTransition : TransitionBase
     private void StateEnter(GameState state)
     {
         canMenu = state.stateSO.canMenu;
-        menuPressed = false;
     }
 
     void Update()
@@ -34,11 +32,7 @@ public class MenuTransition : TransitionBase
     public override bool ShouldTransition()
     {
         var canTransition = menuPressed && canMenu;
-        if (canTransition)
-        {
-            menuPressed = false; 
-        }
-
+        menuPressed = false;
         return base.ShouldTransition() && canTransition;
     }
 
@@ -47,5 +41,4 @@ public class MenuTransition : TransitionBase
         gameStateChannel.StateEnter -= StateEnter;
     }
 }
-
 

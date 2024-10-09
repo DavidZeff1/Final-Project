@@ -10,7 +10,7 @@ public class GameStateManager : MonoBehaviour
     private List<GameState> states = new();
     [SerializeField] private GameState currentState;
     [SerializeField] private GameState defaultState;
-    [SerializeField] GameStateChannel gameStateChannel;
+    private GameStateChannel gameStateChannel;
 
     void Start()
     {
@@ -27,7 +27,6 @@ public class GameStateManager : MonoBehaviour
         if (currentState == null)
         {
             gameStateChannel.StateEntered(defaultState);
-            currentState = defaultState;
         }
 
         SceneManager.sceneLoaded += AnnounceStateOnSceneLoaded;
@@ -36,7 +35,7 @@ public class GameStateManager : MonoBehaviour
     private void AnnounceStateOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         var state = currentState;
-        if (state == null)
+        if (state == null) 
         {
             state = states.FirstOrDefault(x => x.isCurrentState);
         }
@@ -59,4 +58,3 @@ public class GameStateManager : MonoBehaviour
         gameStateChannel.GetCurrentState -= GetCurrentState;
     }
 }
-

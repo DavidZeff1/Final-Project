@@ -7,13 +7,14 @@ public class GameState : MonoBehaviour
 {
     public StateSO stateSO;
     public bool isCurrentState = false;
-    public GameState nextState = null;
+    private GameState nextState = null;
     public GameState previousState = null;
-    public List<TransitionBase> transitions = new();
+    private List<TransitionBase> transitions = new();
     public bool wasTransitionInto = false;
     public bool inTransition = false;
 
-    public GameStateChannel gameStateChannel;
+    private GameStateChannel gameStateChannel;
+    
 
     private void Start()
     {
@@ -59,12 +60,17 @@ public class GameState : MonoBehaviour
         gameStateChannel.StateEnter(this);
         isCurrentState = true;
         wasTransitionInto = true;
+
+        
     }
 
     private void StateExit(GameState next)
     {
         isCurrentState = false;
         gameStateChannel.StateExited(this);
+
+
         next.StateEnter(this);
     }
 }
+
