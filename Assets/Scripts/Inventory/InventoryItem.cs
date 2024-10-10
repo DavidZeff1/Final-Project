@@ -16,5 +16,6 @@ public class InventoryItem : ScriptableObject
 public enum ItemType
 {
     HEALTH,
-    SPEED_INCREASE
+    SPEED_INCREASE,
+    WEAPON
 }

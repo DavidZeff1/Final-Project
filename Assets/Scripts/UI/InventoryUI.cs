@@ -9,6 +9,7 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
     public GameObject inventorySlotPrefab;
+    [SerializeField] GameObject m_PrefabMachineGun;
 
     private readonly Dictionary<InventoryItem, GameObject> itemUIs = new Dictionary<InventoryItem, GameObject>();
 
@@ -88,6 +89,11 @@ public class InventoryUI : MonoBehaviour
             case ItemType.SPEED_INCREASE:
                 UseSpeedIncreaseItem(item);
                 break;
+            case ItemType.WEAPON:
+                //item.SetActive(item.GetComponent<ShootHandler>);
+                UseWeaponOnPlayer(item);
+                break;
+
             default:
                 Debug.Log("Item type not handled.");
                 break;
@@ -121,6 +127,13 @@ public class InventoryUI : MonoBehaviour
         {
             playerMovement.IncreaseSpeed(item.effectAmount, item.effectDuration);
         }
+    }
+
+    private void UseWeaponOnPlayer(InventoryItem item)
+    {
+        GameObject Player = GameObject.FindWithTag("Player");
+        GameObject childObject = Instantiate(m_PrefabMachineGun, Player.transform);
+
     }
 
     private void UpdateItemUI(InventoryItem item, int quantity)

@@ -39,7 +39,7 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveItem(InventoryItem item, int quantity = 1)
     {
-        if (inventory.ContainsKey(item))
+        if (inventory.ContainsKey(item) && !(item.itemType == ItemType.WEAPON))
         {
             inventory[item] -= quantity;
             if (inventory[item] <= 0)
