@@ -30,6 +30,15 @@ public class ShootHandler : MonoBehaviour
         m_ShootingInterval = newInterval;
         InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
     }
+    public void DisableScript()
+    {
+        this.enabled = false;
+    }
+
+    public void EnableScript()
+    {
+        this.enabled = true;
+    }
 }
 
 

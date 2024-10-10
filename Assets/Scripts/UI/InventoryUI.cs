@@ -9,7 +9,6 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
     public GameObject inventorySlotPrefab;
-    [SerializeField] GameObject m_PrefabMachineGun;
 
     private readonly Dictionary<InventoryItem, GameObject> itemUIs = new Dictionary<InventoryItem, GameObject>();
 
@@ -74,9 +73,16 @@ public class InventoryUI : MonoBehaviour
 
         iconImage.sprite = item.m_SpriteIcon;
         quantityText.text = quantity.ToString();
+        if (item.itemType == ItemType.WEAPON) 
+        { 
+            iconImage.transform.localScale = new Vector2(2f, 2f);
+        }
 
         slotButton.onClick.AddListener(() => OnItemClicked(item));
-        itemUIs[item] = slot;  
+        if (!itemUIs.ContainsKey(item))
+        {
+            itemUIs[item] = slot;
+        }
     }
 
     private void OnItemClicked(InventoryItem item)
@@ -90,7 +96,6 @@ public class InventoryUI : MonoBehaviour
                 UseSpeedIncreaseItem(item);
                 break;
             case ItemType.WEAPON:
-                //item.SetActive(item.GetComponent<ShootHandler>);
                 UseWeaponOnPlayer(item);
                 break;
 
@@ -99,7 +104,11 @@ public class InventoryUI : MonoBehaviour
                 break;
         }
 
-        inventoryManager.RemoveItem(item, 1);
+        if (item.itemType != ItemType.WEAPON)
+        {
+            inventoryManager.RemoveItem(item, 1);
+            RefreshUI();
+        }
         
         if (inventoryContains(item))
         {
@@ -131,14 +140,29 @@ public class InventoryUI : MonoBehaviour
 
     private void UseWeaponOnPlayer(InventoryItem item)
     {
-        GameObject Player = GameObject.FindWithTag("Player");
-        GameObject childObject = Instantiate(m_PrefabMachineGun, Player.transform);
+        if (item.weaponPrefab == null)
+        {
+            Debug.LogError("Weapon prefab is missing");
+            return;
+        }
+
+        PlayerWeaponSlot weaponSlot = FindObjectOfType<PlayerWeaponSlot>();
+
+        if (weaponSlot != null)
+        {
+            weaponSlot.EquipWeapon(item.weaponPrefab);
+            Debug.Log(item.m_ItemName);
+        }
+        else
+        {
+            Debug.LogError("WeaponSlot component not found on the player");
+        }
 
     }
 
     private void UpdateItemUI(InventoryItem item, int quantity)
     {
-        if (inventoryContains(item))
+        if (inventoryContains(item) && item.itemType != ItemType.WEAPON)
         {
             if (quantity > 0)
             {
@@ -150,6 +174,7 @@ public class InventoryUI : MonoBehaviour
                 itemUIs.Remove(item);
             }
         }
+
     }
 
     private bool inventoryContains(InventoryItem item)

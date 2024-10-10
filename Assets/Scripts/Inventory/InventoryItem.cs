@@ -11,6 +11,7 @@ public class InventoryItem : ScriptableObject
     public int m_MaxStack = 1;
     public int effectAmount;  
     public float effectDuration;
+    public GameObject weaponPrefab;
 }
 
 public enum ItemType

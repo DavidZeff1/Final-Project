@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 0.5}
@@ -95,15 +95,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918878323588076941}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8113dcf5563199e43a835803084abe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 0}
-  m_GunTransform: {fileID: 0}
+  m_BulletPrefab: {fileID: 3773532125507133443, guid: 01106b8d57f65234dacdf99a7450bad4, type: 3}
+  m_GunTransform: {fileID: 3881139752352674641}
   m_ShootingInterval: 1
-  m_Target: 
+  m_Target: Enemy
 --- !u!114 &4426195959261779244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918878323588076941}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f0052fb7f021a243a9afed1e53d8736, type: 3}
   m_Name: 
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_RightBulletPrefab: {fileID: 3773532125507133443, guid: c3089d1f3965f054f8e00a2e3e8df943, type: 3}
   m_GunTransform: {fileID: 3881139752352674641}
   m_ShootingInterval: 1
-  m_Target: Player
+  m_Target: Enemy
 --- !u!114 &4889934287527484373
 MonoBehaviour:
   m_ObjectHideFlags: 0

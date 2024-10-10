@@ -18,3 +18,4 @@ MonoBehaviour:
   m_MaxStack: 1
   effectAmount: 0
   effectDuration: 0
+  weaponPrefab: {fileID: 2732412536331230219, guid: af954616b920bdd4aba44455135d3d43, type: 3}

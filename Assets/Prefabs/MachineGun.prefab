@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2732412536331230219}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9902, y: -4.86, z: 0}
-  m_LocalScale: {x: 1.0454652, y: 0.8784278, z: 2.7654939}
+  m_LocalPosition: {x: -1.8089, y: -4.86, z: 0}
+  m_LocalScale: {x: 0.440878, y: 0.37043744, z: 1.1662228}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,15 +94,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2732412536331230219}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8113dcf5563199e43a835803084abe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 3773532125507133443, guid: 768adddc81930ee49b70adb98684ee41, type: 3}
+  m_BulletPrefab: {fileID: 3773532125507133443, guid: 01106b8d57f65234dacdf99a7450bad4, type: 3}
   m_GunTransform: {fileID: 2875936045936751634}
   m_ShootingInterval: 0.3
-  m_Target: Player
+  m_Target: Enemy
 --- !u!114 &8580795434238225519
 MonoBehaviour:
   m_ObjectHideFlags: 0
