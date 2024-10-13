@@ -105,7 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyData: {fileID: 11400000, guid: e811ca50bc8af4740b08e662b5d7bd53, type: 2}
-  m_Animator: {fileID: 6682177972636300847}
 --- !u!114 &8765131040253399903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb953a0c49b5444594fb8a17305080a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnemyHealth: 5.03
+  m_EnemyHealth: 30.5
   m_EnemyData: {fileID: 8765131040253399903}
 --- !u!114 &5633825538822306763
 MonoBehaviour:

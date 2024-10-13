@@ -577,14 +577,14 @@ MonoBehaviour:
   m_Boss1Prefab: {fileID: 4804187849205409838, guid: 4453bf475619f1f42a6fbafbb14f3e35, type: 3}
   m_Boss2Prefab: {fileID: 5349770198413784340, guid: 2f62197697c7cac44a34f39dc5c0d3cb, type: 3}
   m_Boss3Prefab: {fileID: 866028618383641833, guid: 277b4700f6b12344a975b6ad28d10cc7, type: 3}
-  m_ShootingEnemyPrefab: {fileID: 246680822940602709, guid: 5a7025baa2debf049897973448d17f78, type: 3}
+  m_ShootingEnemyPrefab: {fileID: 3514880780020410376, guid: 29360b620ebd9f947b5d95eab467fd2d, type: 3}
   m_WeaponSpeedUpPrefab: {fileID: 5693978519828893228, guid: 78debb7453c9de34d9ebd0961794fb5b, type: 3}
   m_HealthPotionpPrefab: {fileID: 4618310552672842997, guid: e18535997c72cd043964ecdfbe8066c7, type: 3}
   m_BossBorderPrefab: {fileID: 3239925384548747267, guid: d588a91c36501db44b0baefc90dd721c, type: 3}
   m_Enemy2Prefab: {fileID: 5171941907619309877, guid: 79ad3985329405f4ea7c34dc3c132927, type: 3}
   m_PlayerTransform: {fileID: 1714852064}
   m_BossCountdownText: {fileID: 891575113}
-  m_CountdownTime: 30
+  m_CountdownTime: 8.8
   m_SpawnRadius: 5
   m_SpawnInterval: 5
 --- !u!4 &213757306
@@ -2374,11 +2374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2506865224949941575, guid: 229a03d6302a1ce4e8e590e71a8bb828, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.522
+      value: -6.71
       objectReference: {fileID: 0}
     - target: {fileID: 2506865224949941575, guid: 229a03d6302a1ce4e8e590e71a8bb828, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.892
+      value: -2.76
       objectReference: {fileID: 0}
     - target: {fileID: 2506865224949941575, guid: 229a03d6302a1ce4e8e590e71a8bb828, type: 3}
       propertyPath: m_LocalPosition.z

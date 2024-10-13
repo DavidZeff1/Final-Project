@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Boss1
   m_EditorClassIdentifier: 
   characterName: Boss1
-  health: 29.5
+  health: 50
   movementSpeed: 2.93
   damage: 3

@@ -24,7 +24,7 @@ public class EnemyHitByBulletHandler : MonoBehaviour
     {
         GameObject Bullet = collision.gameObject;
         BulletDataScript bulletData = Bullet.GetComponent<BulletDataScript>();
-
+        Debug.Log("ouch");
         if (collision.CompareTag("Bullet") && bulletData != null && bulletData.GetBulletTarget().Equals("Enemy"))
         {
             HandleBulletHit(bulletData, Color.red);
