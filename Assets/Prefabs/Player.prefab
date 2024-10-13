@@ -167,8 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CharacterData: {fileID: 11400000, guid: ba3ab4cad286ca849b35290116596731, type: 2}
-  m_MovementSpeed: 0
+  m_NormalMovementSpeed: 300
   m_PlayerRigidBody: {fileID: 2541170262085777943}
+  m_Animator: {fileID: 0}
 --- !u!114 &5739291565501253646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerHealthHandler: {fileID: 5549883412739354411}
   m_SpriteRenderer: {fileID: 3496006439425405459}
+  m_damageCooldown: 0.1
+  m_BossCountdownText: {fileID: 0}
 --- !u!114 &5549883412739354411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +199,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerHealthText: {fileID: 4074042361936492065}
+  m_PlayerMaxHealth: 0
   m_PlayerHealth: 0
   m_PlayerData: {fileID: 5623468078735796955}
+  m_HealthBar: {fileID: 0}
 --- !u!114 &5623468078735796955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,8 +243,8 @@ Transform:
   m_GameObject: {fileID: 3640831339813189020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06443, y: -0.09077, z: -1}
-  m_LocalScale: {x: 0.17953598, y: 0.19213803, z: 1}
+  m_LocalPosition: {x: 0.07649, y: -0.09077, z: -1}
+  m_LocalScale: {x: 0.13933429, y: 0.14911449, z: 0.77608}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8140887837142510704}
@@ -311,6 +316,7 @@ MonoBehaviour:
   m_BulletPrefab: {fileID: 3773532125507133443, guid: 01106b8d57f65234dacdf99a7450bad4, type: 3}
   m_GunTransform: {fileID: 5958217329463075563}
   m_ShootingInterval: 1
+  m_Target: 
 --- !u!1 &4224394232170097504
 GameObject:
   m_ObjectHideFlags: 0
