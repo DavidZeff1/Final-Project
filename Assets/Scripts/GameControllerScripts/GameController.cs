@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject m_Enemy2Prefab;
     [SerializeField] private Transform m_PlayerTransform;
     [SerializeField] private TextMeshProUGUI m_BossCountdownText;
-    private float m_CountdownTime = 10f;
+    [SerializeField] private float m_CountdownTime = 10f;
     private bool m_BossFightStarted = false;
     [SerializeField] private float m_SpawnRadius = 5f; 
     [SerializeField] private float m_SpawnInterval = 5f; 

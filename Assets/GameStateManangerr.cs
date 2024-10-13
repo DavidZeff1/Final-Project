@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameStateManager : MonoBehaviour
+public class GameStateManagerr : MonoBehaviour
 {
     private List<GameState> states = new();
     [SerializeField] private GameState currentState;
@@ -58,3 +58,4 @@ public class GameStateManager : MonoBehaviour
         gameStateChannel.GetCurrentState -= GetCurrentState;
     }
 }
+

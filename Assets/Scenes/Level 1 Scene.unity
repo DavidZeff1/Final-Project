@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Enemy2Prefab: {fileID: 5171941907619309877, guid: 79ad3985329405f4ea7c34dc3c132927, type: 3}
   m_PlayerTransform: {fileID: 1714852064}
   m_BossCountdownText: {fileID: 891575113}
+  m_CountdownTime: 30
   m_SpawnRadius: 5
   m_SpawnInterval: 5
 --- !u!4 &213757306
@@ -2073,7 +2074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hi
+  m_text: ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2781,7 +2782,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1541241404}
-  - component: {fileID: 1541241403}
+  - component: {fileID: 1541241406}
+  - component: {fileID: 1541241405}
   m_Layer: 0
   m_Name: GameStateManager
   m_TagString: Untagged
@@ -2789,18 +2791,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1541241403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541241402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1588075dd8bd090439cc31f018de3183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1541241404
 Transform:
   m_ObjectHideFlags: 0
@@ -2818,6 +2808,32 @@ Transform:
   - {fileID: 632630414}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1541241405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541241402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1588075dd8bd090439cc31f018de3183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
+  defaultState: {fileID: 2008913581}
+--- !u!114 &1541241406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541241402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ce5b599705e8e45a64ba668da99b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1614100486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,7 +3217,7 @@ GameObject:
   - component: {fileID: 1722317750}
   - component: {fileID: 1722317749}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: InventoryCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3347,7 +3363,7 @@ GameObject:
   - component: {fileID: 1878929892}
   - component: {fileID: 1878929891}
   m_Layer: 5
-  m_Name: MainSccreenCanvass
+  m_Name: MainScreenCanvass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3564,9 +3580,9 @@ MonoBehaviour:
   m_PowerUseEvent: {fileID: 11400000, guid: a7055d4c94ab1974fa9f957fcfa598e2, type: 2}
   m_PowerIcons:
   - {fileID: 457912269}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 352023151}
+  - {fileID: 737415424}
+  - {fileID: 1380280443}
 --- !u!4 &1973423596
 Transform:
   m_ObjectHideFlags: 0
