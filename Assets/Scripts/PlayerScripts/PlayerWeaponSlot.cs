@@ -14,7 +14,7 @@ public class PlayerWeaponSlot : MonoBehaviour
         }
 
         currentWeapon = Instantiate(weaponPrefab, transform);
-        currentWeapon.transform.localPosition = new Vector2(0, -0.08f);
+        currentWeapon.transform.localPosition = new Vector2(0.1f, -0.08f);
         currentWeapon.transform.localRotation = Quaternion.identity;
         currentWeapon.transform.localScale = new Vector2(0.25f, 0.25f);
         currentWeapon.GetComponent<ShootHandler>().EnableScript();
