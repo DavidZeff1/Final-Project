@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4824210948161578986}
   - component: {fileID: 9077454006623968976}
   - component: {fileID: 4881715964541091492}
+  - component: {fileID: -3619945389761754296}
   m_Layer: 0
   m_Name: Boss2
   m_TagString: Enemy
@@ -218,6 +219,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MiniEnemyPrefab: {fileID: 7439698398301417657, guid: fc98d7c7ed0dee248ae0e6a47e5f496f, type: 3}
+--- !u!95 &-3619945389761754296
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349770198413784340}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7282648263275628698
 PrefabInstance:
   m_ObjectHideFlags: 0
