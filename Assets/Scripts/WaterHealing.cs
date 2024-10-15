@@ -5,8 +5,8 @@ using static UnityEditor.Progress;
 
 public class WaterHealing : MonoBehaviour
 {
-    [SerializeField] float m_HeatlhToAdd;
-    [SerializeField] float m_HealingWait;
+    [SerializeField] float m_HeatlhToAdd = 10;
+    [SerializeField] float m_HealingWait = 1f;
     private PlayerHealthController m_PlayerHealth;
     private float m_HealingTimer;
 
@@ -28,6 +28,7 @@ public class WaterHealing : MonoBehaviour
             {
                 m_PlayerHealth.SetPlayerHealth(m_HeatlhToAdd);
                 m_HealingTimer = 0f;
+                Debug.Log($"Player Healed for: {m_HeatlhToAdd}");
             }
 
         }

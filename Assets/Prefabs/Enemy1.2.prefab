@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 4558567067778792380}
   - component: {fileID: 8249703850867346490}
   - component: {fileID: 2673431749473007983}
-  m_Layer: 0
+  - component: {fileID: -8867414436812960087}
+  m_Layer: 3
   m_Name: Enemy1.2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -212,6 +213,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!50 &-8867414436812960087
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514880780020410376}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &8787584200113051300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,6 +291,10 @@ PrefabInstance:
     - target: {fileID: 8184082244183972179, guid: 72a3fb42bb4ea1640ae1d0663f45e057, type: 3}
       propertyPath: m_Name
       value: EnemyGun 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184082244183972179, guid: 72a3fb42bb4ea1640ae1d0663f45e057, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
