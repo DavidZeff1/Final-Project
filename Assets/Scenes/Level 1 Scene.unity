@@ -1583,7 +1583,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3177,8 +3177,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FireballPrefab: {fileID: 81584394260642053, guid: ecb889fec1f3f8d46a0e3a15b3da42a3, type: 3}
+  m_ShockWavePrefab: {fileID: 0}
   m_SpawnPoint: {fileID: 1714852064}
   m_PowerUseEvent: {fileID: 11400000, guid: a7055d4c94ab1974fa9f957fcfa598e2, type: 2}
+  m_ShockwaveRadius: 5
+  m_ShockwaveForce: 5
+  m_ShockwaveEffectDuration: 1
+  m_EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LazerPrefab: {fileID: 0}
+  m_LaserSpawnPoint: {fileID: 0}
+  m_LazerOffset: 0.5
 --- !u!114 &1714852075
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -81,11 +81,12 @@ public class SuperPowerShooterController : MonoBehaviour
         Vector3 direction = (mousePos - m_LaserSpawnPoint.position).normalized;
         Vector3 spawnPosition = m_LaserSpawnPoint.position + direction * m_LazerOffset;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        
+
         mousePos.z = 0;
         currentLaser = Instantiate(m_LazerPrefab, spawnPosition, Quaternion.identity);
         currentLaser.transform.rotation = Quaternion.Euler(0, 0, angle);
         currentLaser.transform.parent = transform;
+        currentLaser.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, 0);
     }
 
     private IEnumerator PowerCooldownRoutine(int powerIndex)
