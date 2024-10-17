@@ -49,13 +49,15 @@ public class InventoryUI : MonoBehaviour
             AddNewItemUI(item, quantity);
         }
     }
-
+    
     private void HandleItemRemoved(InventoryItem item, int quantity)
     {
         if (itemUIs.ContainsKey(item))
         {
             UpdateItemUI(item, quantity);
         }
+        
+        RefreshUI();
     }
 
     private void AddNewItemUI(InventoryItem item, int quantity)
@@ -84,7 +86,7 @@ public class InventoryUI : MonoBehaviour
             itemUIs[item] = slot;
         }
     }
-
+    
     private void OnItemClicked(InventoryItem item)
     {
         switch (item.itemType)
@@ -159,14 +161,19 @@ public class InventoryUI : MonoBehaviour
         }
 
     }
-
+    
     private void UpdateItemUI(InventoryItem item, int quantity)
     {
         if (inventoryContains(item) && item.itemType != ItemType.WEAPON)
         {
             if (quantity > 0)
             {
-                itemUIs[item].transform.Find("Quantity").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
+                TextMeshProUGUI quantityText = itemUIs[item].transform.Find("QuantityText").GetComponent<TextMeshProUGUI>();
+                if (quantityText != null)
+                {
+                    quantityText.text = quantity.ToString();
+                }
+
             }
             else
             {
@@ -176,7 +183,7 @@ public class InventoryUI : MonoBehaviour
         }
 
     }
-
+    
     private bool inventoryContains(InventoryItem item)
     {
         return InventoryManager.Instance.GetInventory().ContainsKey(item);

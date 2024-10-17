@@ -2016,6 +2016,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821039407}
   m_CullTransparentMesh: 1
+--- !u!1001 &869280335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 569600998175300348, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_Name
+      value: AppleHealthPickup (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888323676477419239, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0625796a6749e0a4e803e0e9290aebd4, type: 3}
 --- !u!1 &891575111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3177,18 +3234,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FireballPrefab: {fileID: 81584394260642053, guid: ecb889fec1f3f8d46a0e3a15b3da42a3, type: 3}
-  m_ShockWavePrefab: {fileID: 0}
+  m_ShockWavePrefab: {fileID: 7731705341790706310, guid: 4a66039fa4c106746841de68fc7534b5, type: 3}
   m_SpawnPoint: {fileID: 1714852064}
   m_PowerUseEvent: {fileID: 11400000, guid: a7055d4c94ab1974fa9f957fcfa598e2, type: 2}
-  m_ShockwaveRadius: 5
-  m_ShockwaveForce: 5
+  m_ShockwaveRadius: 8
+  m_ShockwaveForce: 20
   m_ShockwaveEffectDuration: 1
   m_EnemyLayer:
     serializedVersion: 2
-    m_Bits: 0
-  m_LazerPrefab: {fileID: 0}
-  m_LaserSpawnPoint: {fileID: 0}
-  m_LazerOffset: 0.5
+    m_Bits: 8
+  m_LazerPrefab: {fileID: 6974372676444726132, guid: 305d304051ba5fa41a6380a76ee7c07a, type: 3}
+  m_LaserSpawnPoint: {fileID: 1714852064}
+  m_LazerOffset: 5
 --- !u!114 &1714852075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3859,6 +3916,7 @@ SceneRoots:
   - {fileID: 1722317752}
   - {fileID: 3367068300745534278}
   - {fileID: 4859650163657285951}
+  - {fileID: 869280335}
   - {fileID: 27425585}
   - {fileID: 1189613534}
   - {fileID: 1541241404}

@@ -26,8 +26,13 @@ public class InventoryManager : MonoBehaviour
         if (inventory.ContainsKey(item))
         {
             int newQuantity = inventory[item] + quantity;
+           
             inventory[item] = Mathf.Min(newQuantity, item.m_MaxStack);
-            quantity = newQuantity > item.m_MaxStack ? item.m_MaxStack - (newQuantity - quantity) : quantity;
+            if (newQuantity > item.m_MaxStack)
+            {
+                quantity = item.m_MaxStack - (newQuantity - quantity);
+            }
+            
         }
         else
         {

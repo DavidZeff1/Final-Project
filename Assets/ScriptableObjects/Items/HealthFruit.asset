@@ -15,7 +15,7 @@ MonoBehaviour:
   m_ItemName: Health Fruit
   m_SpriteIcon: {fileID: 7293598183456022363, guid: 1ddc9afd21fec77489b1248d18f31b68, type: 3}
   itemType: 0
-  m_MaxStack: 10
+  m_MaxStack: 15
   effectAmount: 5
   effectDuration: 0
   weaponPrefab: {fileID: 0}

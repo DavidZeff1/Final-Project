@@ -15,9 +15,11 @@ public class SuperPowerShooterController : MonoBehaviour
     [SerializeField] private GameObject m_LazerPrefab;
     [SerializeField] private Transform m_LaserSpawnPoint;
     [SerializeField] private float m_LazerOffset = 0.5f;
+    [SerializeField] private float m_SlowMotionFactor = 0.4f;
+    [SerializeField] private float m_SlowMotionDuration = 4f;
     private const float PowerCooldownDuration = 5f;
     private bool[] m_PowerCooldowns = new bool[4];
-    private GameObject currentLaser;
+    private GameObject m_CurrentLaser;
 
     private void Update()
     {
@@ -44,8 +46,11 @@ public class SuperPowerShooterController : MonoBehaviour
                 break;
 
             case 2:
-                UseLazer();
-                
+                UseLazer();    
+                break;
+            
+            case 3:
+                StartCoroutine(SlowTime());
                 break;
         }
 
@@ -70,7 +75,6 @@ public class SuperPowerShooterController : MonoBehaviour
             {
                 Vector2 direction = (enemy.transform.position - transform.position).normalized;
                 enemyRb.AddForce(direction * m_ShockwaveForce, ForceMode2D.Impulse);
-                StartCoroutine(LimitVelocity(enemyRb));
             }
         }
     }
@@ -83,10 +87,10 @@ public class SuperPowerShooterController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         mousePos.z = 0;
-        currentLaser = Instantiate(m_LazerPrefab, spawnPosition, Quaternion.identity);
-        currentLaser.transform.rotation = Quaternion.Euler(0, 0, angle);
-        currentLaser.transform.parent = transform;
-        currentLaser.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, 0);
+        m_CurrentLaser = Instantiate(m_LazerPrefab, spawnPosition, Quaternion.identity);
+        m_CurrentLaser.transform.rotation = Quaternion.Euler(0, 0, angle);
+        m_CurrentLaser.transform.parent = transform;
+        m_CurrentLaser.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, 0);
     }
 
     private IEnumerator PowerCooldownRoutine(int powerIndex)
@@ -96,17 +100,14 @@ public class SuperPowerShooterController : MonoBehaviour
         m_PowerCooldowns[powerIndex] = false;
     }
 
-    private IEnumerator LimitVelocity(Rigidbody2D enemyRb)
+    private IEnumerator SlowTime()
     {
-        float maxVelocity = 5f;
-        float slowDownTime = 1f;
+        Time.timeScale = m_SlowMotionFactor;
 
-        while (enemyRb.velocity.magnitude > maxVelocity)
-        {
-            enemyRb.velocity = Vector2.Lerp(enemyRb.velocity, Vector2.zero, Time.deltaTime / slowDownTime);
-            yield return null;
-        }
+        yield return new WaitForSecondsRealtime(m_SlowMotionDuration);
+
+        Time.timeScale = 1f;
+
     }
-
 }
 
