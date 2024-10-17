@@ -10,7 +10,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (m_InventoryUI == null)
         {
-            Debug.Log("Inventory field is empty");
+            Debug.Log("ERROR! m_InventoryUI null");
         }
     }
 

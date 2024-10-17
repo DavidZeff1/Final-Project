@@ -23,10 +23,6 @@ public class InventoryUI : MonoBehaviour
             inventoryManager.OnItemRemoved += HandleItemRemoved;
             RefreshUI();
         }
-        else
-        {
-            Debug.LogError("InventoryManager not found!");
-        }
     }
 
     private void OnDisable()
@@ -69,7 +65,7 @@ public class InventoryUI : MonoBehaviour
 
         if (item == null || iconImage == null || quantityText == null)
         {
-            Debug.LogError("Missing component in AddNewItemUI!");
+            Debug.LogError("ERROR MISSING ITEM/ICONIMAGE/QUANTITYTEXT IN InventoryUI");
             return;
         }
 
@@ -99,10 +95,6 @@ public class InventoryUI : MonoBehaviour
                 break;
             case ItemType.WEAPON:
                 UseWeaponOnPlayer(item);
-                break;
-
-            default:
-                Debug.Log("Item type not handled.");
                 break;
         }
 
@@ -144,7 +136,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (item.weaponPrefab == null)
         {
-            Debug.LogError("Weapon prefab is missing");
+            Debug.LogError("ERROR! item.weaponPrefab NULL");
             return;
         }
 
@@ -153,10 +145,6 @@ public class InventoryUI : MonoBehaviour
         if (weaponSlot != null)
         {
             weaponSlot.EquipWeapon(item.weaponPrefab);
-        }
-        else
-        {
-            Debug.LogError("WeaponSlot component not found on the player");
         }
 
     }
