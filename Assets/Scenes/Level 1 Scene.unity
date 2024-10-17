@@ -994,7 +994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bb2d9d5e3473e9499fb2088939851eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f89cde737ba44745b85e0d274fb80ed, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1796,7 +1796,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bb2d9d5e3473e9499fb2088939851eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e29e8eb70bea0d4aa3320ec3b83a879, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2812,7 +2812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bb2d9d5e3473e9499fb2088939851eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a94d98a25d310540b09724393f86e1c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3245,7 +3245,9 @@ MonoBehaviour:
     m_Bits: 8
   m_LazerPrefab: {fileID: 6974372676444726132, guid: 305d304051ba5fa41a6380a76ee7c07a, type: 3}
   m_LaserSpawnPoint: {fileID: 1714852064}
-  m_LazerOffset: 5
+  m_LazerOffset: 9
+  m_SlowMotionFactor: 0.4
+  m_SlowMotionDuration: 4
 --- !u!114 &1714852075
 MonoBehaviour:
   m_ObjectHideFlags: 0
