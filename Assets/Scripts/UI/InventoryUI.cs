@@ -153,7 +153,6 @@ public class InventoryUI : MonoBehaviour
         if (weaponSlot != null)
         {
             weaponSlot.EquipWeapon(item.weaponPrefab);
-            Debug.Log(item.m_ItemName);
         }
         else
         {

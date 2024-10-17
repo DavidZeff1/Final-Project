@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
     private void SpawnBoss()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-
+        Debug.Log(sceneName);
         switch (sceneName)
         {
             case "Level 1 Scene":
