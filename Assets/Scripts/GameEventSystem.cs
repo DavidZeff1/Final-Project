@@ -6,6 +6,6 @@ using UnityEngine;
 public static class GameEventSystem
 {
     public static Action<float> OnEnemyHit;   
-    public static Action<float> OnPlayerDamaged;
+    public static Action<float> OnPlayerChangeHealth;
     public static Action<GameObject> OnEnemyDeath;  
 }
