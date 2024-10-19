@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private int m_Scene = 0;
     [SerializeField] private GameObject m_EnemyPrefab;
     [SerializeField] private GameObject m_Boss1Prefab;
     [SerializeField] private GameObject m_Boss2Prefab;
@@ -75,7 +74,7 @@ public class GameController : MonoBehaviour
             case "Level 1 Scene":
                 SpawnWithinCircleRadiusOfPlayer(m_Boss1Prefab);
                 break;
-            case "Level 2 Scene":
+            case "Level 2 scene":
                 SpawnWithinCircleRadiusOfPlayer(m_Boss2Prefab);
                 break;
             case "Level 3 Scene":
