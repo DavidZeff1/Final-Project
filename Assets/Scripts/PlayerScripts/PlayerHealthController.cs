@@ -11,14 +11,12 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] private float m_PlayerHealth;
     [SerializeField] private PlayerDataScript m_PlayerData;
     [SerializeField] TextMeshProUGUI m_BossCountdownText;
-    [SerializeField] HealthBar m_HealthBar;
 
     private void Start()
     {
         m_PlayerHealth = m_PlayerData.GetEnemyHealth();
         UpdateHealthText();
-        m_HealthBar.SetMaxHealth(m_PlayerMaxHealth);
-
+        GameEventSystem.OnPlayerSetMaxHealth?.Invoke(m_PlayerMaxHealth);
         GameEventSystem.OnPlayerChangeHealth += SetPlayerHealth;
 
     }
@@ -27,24 +25,24 @@ public class PlayerHealthController : MonoBehaviour
         GameEventSystem.OnPlayerChangeHealth -= SetPlayerHealth;
     }
 
-    public float GetPlayerHealth()
+    /*public float GetPlayerHealth()
     {
         return m_PlayerHealth;
-    }
+    }*/
 
     public void SetPlayerHealth(float m_HealthToAdd)
     {
         m_PlayerHealth = ( ( m_PlayerHealth + m_HealthToAdd) > m_PlayerMaxHealth) ? m_PlayerMaxHealth : (m_PlayerHealth + m_HealthToAdd);
-
         if (m_PlayerHealth <= 0)
         {
             m_PlayerHealth = 0;
             PlayerDeath();
         }
-     
+       
+        GameEventSystem.OnPlayerSetSliderHealth?.Invoke(m_PlayerHealth);
         UpdateHealthText();
-        m_HealthBar.SetSlider(m_PlayerHealth);
     }
+
     private void PlayerDeath()
     {
         m_BossCountdownText.text = "Player Died. Game Over!";

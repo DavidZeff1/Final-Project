@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyHealth: 30.5
   m_EnemyData: {fileID: 8765131040253399903}
+  m_IsBoss: 1
 --- !u!114 &5633825538822306763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyHealthHandler: {fileID: 3014665237263745365}
   m_SpriteRenderer: {fileID: 3475196970872900746}
-  m_IsBoss: 1
 --- !u!61 &7545945565120362601
 BoxCollider2D:
   m_ObjectHideFlags: 0

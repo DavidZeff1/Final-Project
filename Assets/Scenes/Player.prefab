@@ -652,7 +652,7 @@ MonoBehaviour:
   m_PlayerHealthHandler: {fileID: 4749428880511306599}
   m_SpriteRenderer: {fileID: 3330245360309797021}
   m_damageCooldown: 0.1
-  m_BossCountdownText: {fileID: 0}
+  m_DamageFromMelee: 5
 --- !u!114 &4749428880511306599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,10 +666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerHealthText: {fileID: 5542482565382623377}
-  m_PlayerMaxHealth: 82.4
-  m_PlayerHealth: 78.6
+  m_PlayerMaxHealth: 100
+  m_PlayerHealth: 80
   m_PlayerData: {fileID: 8156225445113912080}
-  m_HealthBar: {fileID: 2707465744529229723}
+  m_BossCountdownText: {fileID: 0}
 --- !u!114 &8156225445113912080
 MonoBehaviour:
   m_ObjectHideFlags: 0

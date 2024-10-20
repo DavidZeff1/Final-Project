@@ -8,6 +8,19 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Slider m_Slider;
     [SerializeField] Gradient m_Gradient;
     [SerializeField] Image m_Fill;
+
+    private void Start()
+    {
+        GameEventSystem.OnPlayerSetMaxHealth += SetMaxHealth;
+        GameEventSystem.OnPlayerSetSliderHealth += SetSlider;
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.OnPlayerSetMaxHealth -= SetMaxHealth;
+        GameEventSystem.OnPlayerSetSliderHealth -= SetSlider;
+    }
+
     public void SetMaxHealth(float i_MaxHealth)
     {
         m_Slider.maxValue = i_MaxHealth;

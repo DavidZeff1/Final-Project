@@ -7,17 +7,17 @@ public class EnemyHitByBulletHandler : MonoBehaviour
 {
     [SerializeField] private EnemyHealthHandler m_EnemyHealthHandler;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
-    [SerializeField] private bool m_IsBoss;  
+    //[SerializeField] private bool m_IsBoss;  
 
     private Color m_OriginalColor = Color.white;
-    private TMP_Text m_CountdownText;  
+    //private TMP_Text m_CountdownText;  
 
     private void Start()
     {
-        if (m_IsBoss)
+        /*if (m_IsBoss)
         {
             m_CountdownText = GameObject.Find("BossCountdownText")?.GetComponent<TMP_Text>();
-        }
+        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,18 +38,19 @@ public class EnemyHitByBulletHandler : MonoBehaviour
     {
         if (bulletData != null)
         {
-            m_EnemyHealthHandler.SetEnemyHealth(-bulletData.GetBulletDamage());
+            GameEventSystem.OnEnemyHit?.Invoke(-bulletData.GetBulletDamage());
+            //m_EnemyHealthHandler.SetEnemyHealth(-bulletData.GetBulletDamage());
 
-            if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
+            /*if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
             {
                 HandleEnemyDeath();
-            }
+            }*/
 
             StartCoroutine(ChangeColorTemporarily(hitColor));
         }
     }
 
-    private void HandleEnemyDeath()
+    /*private void HandleEnemyDeath()
     {
         Destroy(gameObject);
 
@@ -62,7 +63,7 @@ public class EnemyHitByBulletHandler : MonoBehaviour
             }
 
         }
-    }
+    }*/
     
 
     private IEnumerator ChangeColorTemporarily(Color i_Color)
