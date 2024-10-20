@@ -25,7 +25,7 @@ public class TransitionScene : MonoBehaviour
         switch (currentSceneName)
         {
             case "Level 1 Scene":
-                nextSceneName = "Level 2 Scene";
+                nextSceneName = "Level 2 scene";
                 break;
             case "Level 2 Scene":
                 nextSceneName = "Level 3 Scene";

@@ -418,6 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 213757306}
   - component: {fileID: 213757305}
+  - component: {fileID: 213757307}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -466,6 +467,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &213757307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213757304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e84c7d28bf9b14ca0b61be14bad847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CountdownText: {fileID: 891575113}
 --- !u!1 &232855531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,7 +2632,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainScreenCanvass
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8553363656180922486, guid: 48e7db9c0110e8d4f8b21e7ae42bb9ca, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
