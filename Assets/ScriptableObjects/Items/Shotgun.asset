@@ -16,6 +16,6 @@ MonoBehaviour:
   m_SpriteIcon: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   itemType: 2
   m_MaxStack: 1
-  effectAmount: 0
-  effectDuration: 0
-  weaponPrefab: {fileID: 918878323588076941, guid: 04dcf1fc2a0d0f74fbb3be706289b1b4, type: 3}
+  m_EffectAmount: 0
+  m_EffectDuration: 0
+  m_WeaponPrefab: {fileID: 918878323588076941, guid: 04dcf1fc2a0d0f74fbb3be706289b1b4, type: 3}
