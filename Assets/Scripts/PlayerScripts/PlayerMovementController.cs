@@ -13,10 +13,16 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 m_Movement;
     private float m_DeltaX;
     private float m_DeltaY;
+    private BoxCollider2D m_BoxCollider;
+    private Vector3 m_OriginalScale;
 
     private void Start()
     {
+        m_BoxCollider = GetComponent<BoxCollider2D>();
+        m_OriginalScale = transform.localScale;
         m_CurrentMovementSpeed = m_NormalMovementSpeed;
+        GameEventSystem.OnPlayerChangeSpeed += IncreaseSpeed;
+        GameEventSystem.OnPlayerShrink += ShrinkPlayer;
     }
 
     private void FixedUpdate()
@@ -39,8 +45,15 @@ public class PlayerMovementController : MonoBehaviour
             m_Animator.SetBool(nameof(AnimationParams.IsMoving), false);
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.OnPlayerChangeSpeed -= IncreaseSpeed;
+        GameEventSystem.OnPlayerShrink -= ShrinkPlayer;
 
     }
+
     public enum InputStr
     {
         Horizontal,
@@ -63,6 +76,7 @@ public class PlayerMovementController : MonoBehaviour
             m_DeltaY = -1;
         }
     }
+    
     private void GetHorizontalArrowKey()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -75,11 +89,38 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-
     public void IncreaseSpeed(float i_SpeedBoost, float i_Duration)
     {
         m_CurrentMovementSpeed += i_SpeedBoost;
         StartCoroutine(ResetSpeedAfterDuration(i_Duration));
+    }
+
+    public void ShrinkPlayer(float i_ScaleChange, float i_SizeChangeTime)
+    {
+        transform.localScale = m_OriginalScale * i_ScaleChange;
+        if (m_BoxCollider != null)
+        {
+            m_BoxCollider.size *= i_ScaleChange;
+        }
+
+        StartCoroutine(ResetSizeAfterDelay(i_SizeChangeTime));
+
+    }
+
+    private IEnumerator ResetSizeAfterDelay(float i_SizeChangeTime)
+    {
+        yield return new WaitForSeconds(i_SizeChangeTime);
+
+        transform.localScale = m_OriginalScale;
+    }
+
+    public void ResetSize()
+    {
+        transform.localScale = m_OriginalScale;
+        if (m_BoxCollider != null)
+        {
+            m_BoxCollider.size /= m_OriginalScale.magnitude;
+        }
     }
 
     private IEnumerator ResetSpeedAfterDuration(float i_Duration)

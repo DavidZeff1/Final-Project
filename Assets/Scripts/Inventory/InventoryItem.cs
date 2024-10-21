@@ -9,14 +9,15 @@ public class InventoryItem : ScriptableObject
     public Sprite m_SpriteIcon;
     public ItemType itemType;
     public int m_MaxStack = 1;
-    public int effectAmount;  
-    public float effectDuration;
-    public GameObject weaponPrefab;
+    public float m_EffectAmount;  
+    public float m_EffectDuration;
+    public GameObject m_WeaponPrefab;
 }
 
 public enum ItemType
 {
     HEALTH,
     SPEED_INCREASE,
-    WEAPON
+    WEAPON,
+    SIZE_MANIPULATOR
 }

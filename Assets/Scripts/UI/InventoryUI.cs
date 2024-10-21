@@ -96,6 +96,9 @@ public class InventoryUI : MonoBehaviour
             case ItemType.WEAPON:
                 UseWeaponOnPlayer(item);
                 break;
+            case ItemType.SIZE_MANIPULATOR:
+                UseSizeManipulator(item);
+                break;
         }
 
         if (item.itemType != ItemType.WEAPON)
@@ -116,25 +119,17 @@ public class InventoryUI : MonoBehaviour
 
     private void UseHealthItem(InventoryItem item)
     {
-        PlayerHealthController playerHealth = FindObjectOfType<PlayerHealthController>();
-        if (playerHealth != null)
-        {
-            playerHealth.SetPlayerHealth(item.effectAmount);
-        }
+        GameEventSystem.OnPlayerChangeHealth?.Invoke(item.m_EffectAmount); 
     }
 
     private void UseSpeedIncreaseItem(InventoryItem item)
     {
-        PlayerMovementController playerMovement = FindObjectOfType<PlayerMovementController>();
-        if (playerMovement != null)
-        {
-            playerMovement.IncreaseSpeed(item.effectAmount, item.effectDuration);
-        }
+        GameEventSystem.OnPlayerChangeSpeed?.Invoke(item.m_EffectAmount, item.m_EffectDuration);
     }
 
     private void UseWeaponOnPlayer(InventoryItem item)
     {
-        if (item.weaponPrefab == null)
+        if (item.m_WeaponPrefab == null)
         {
             Debug.LogError("ERROR! item.weaponPrefab NULL");
             return;
@@ -144,11 +139,17 @@ public class InventoryUI : MonoBehaviour
 
         if (weaponSlot != null)
         {
-            weaponSlot.EquipWeapon(item.weaponPrefab);
+            weaponSlot.EquipWeapon(item.m_WeaponPrefab);
         }
 
     }
     
+    private void UseSizeManipulator(InventoryItem item)
+    {
+        GameEventSystem.OnPlayerShrink.Invoke(item.m_EffectAmount, item.m_EffectDuration);
+        GameEventSystem.OnPlayerChangeSpeed?.Invoke(200, item.m_EffectDuration);
+    }
+
     private void UpdateItemUI(InventoryItem item, int quantity)
     {
         if (inventoryContains(item) && item.itemType != ItemType.WEAPON)
