@@ -26,11 +26,6 @@ public class EnemyHealthHandler : MonoBehaviour
         GameEventSystem.OnEnemyHit -= SetEnemyHealth;
     }
 
-    /*public float GetEnemyHealth()
-    {
-        return m_EnemyHealth;
-    }*/
-
     public void SetEnemyHealth(float m_HealthToAdd)
     {
         m_EnemyHealth += m_HealthToAdd;
@@ -42,7 +37,7 @@ public class EnemyHealthHandler : MonoBehaviour
 
     private void HandleEnemyDeath()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
 
         if (m_IsBoss)
         {
@@ -50,6 +45,7 @@ public class EnemyHealthHandler : MonoBehaviour
             {
                 m_CountdownText.text = "Boss Killed, Level Completed!\nWill Be Transitioning to next level in a few seconds";
                 m_CountdownText.color = Color.red;
+                GameEventSystem.OnEnemyBossDeath?.Invoke();
             }
 
         }

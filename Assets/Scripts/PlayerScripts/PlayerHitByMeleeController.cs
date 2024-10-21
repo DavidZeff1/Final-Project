@@ -11,7 +11,6 @@ public class PlayerHitByMeleeController : MonoBehaviour
     private Color m_OriginalColor = Color.white;
     private bool m_CanTakeDamage = true; 
     [SerializeField] private float m_damageCooldown = 0.1f;
-    //[SerializeField] TextMeshProUGUI m_BossCountdownText;
     [SerializeField] float m_DamageFromMelee = 5f;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,16 +38,7 @@ public class PlayerHitByMeleeController : MonoBehaviour
 
         if (bulletData.GetBulletTarget().Equals("Player") && m_CanTakeDamage)
         {
-            //m_PlayerHealthHandler.SetPlayerHealth(-bulletData.GetBulletDamage());
             GameEventSystem.OnPlayerChangeHealth?.Invoke(-bulletData.GetBulletDamage());
-
-            /*m_PlayerHealthHandler.GetPlayerHealth();
-
-            if (m_PlayerHealthHandler.GetPlayerHealth() <= 0)
-            {
-                PlayerDeath(gameObject);
-            }*/
-
             StartCoroutine(DamageCooldown());
             StartCoroutine(ChangeColorTemporarily());
         }
@@ -56,27 +46,10 @@ public class PlayerHitByMeleeController : MonoBehaviour
 
     private void HitByEnemyCollision()
     {
-        //m_PlayerHealthHandler.SetPlayerHealth(-1);
         GameEventSystem.OnPlayerChangeHealth?.Invoke(-m_DamageFromMelee);
-
-        /*
-        m_PlayerHealthHandler.GetPlayerHealth();
-
-        if (m_PlayerHealthHandler.GetPlayerHealth() <= 0)
-        {
-            PlayerDeath(gameObject);
-        }*/
-
         StartCoroutine(DamageCooldown());
         StartCoroutine(ChangeColorTemporarily());
     }
-
-    /*private void PlayerDeath(GameObject gameObject)
-    {
-        m_BossCountdownText.text = "Player Died. Game Over!";
-        m_BossCountdownText.color = Color.red;
-        Destroy(gameObject, 1f);
-    }*/
 
     private IEnumerator DamageCooldown()
     {

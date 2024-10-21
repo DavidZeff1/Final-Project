@@ -8,20 +8,26 @@ public class TransitionScene : MonoBehaviour
 {
     [SerializeField] TMP_Text m_CountdownText;
 
-    void Update()
+    private void Start()
     {
-        if (m_CountdownText.text == "Boss Killed, Level Completed!\nWill Be Transitioning to next level in a few seconds")
-        {
-            StartCoroutine(LoadNextScene());
-        }
-
-       
+        GameEventSystem.OnEnemyBossDeath += HandleLoadNextScene;
     }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.OnEnemyBossDeath -= HandleLoadNextScene;
+    }
+
+    private void HandleLoadNextScene()
+    {
+        StartCoroutine(LoadNextScene());
+    }
+
     private IEnumerator LoadNextScene()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
-
         string nextSceneName;
+        
         switch (currentSceneName)
         {
             case "Level 1 Scene":
