@@ -26,6 +26,11 @@ public class EnemyHealthHandler : MonoBehaviour
         GameEventSystem.OnEnemyHit -= SetEnemyHealth;
     }
 
+    public float GetEnemyHealth()
+    {
+        return m_EnemyHealth;
+    }
+
     public void SetEnemyHealth(float m_HealthToAdd)
     {
         m_EnemyHealth += m_HealthToAdd;

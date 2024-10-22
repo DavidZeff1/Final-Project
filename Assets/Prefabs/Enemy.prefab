@@ -192,7 +192,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyHealthHandler: {fileID: 4623415493776387086}
   m_SpriteRenderer: {fileID: 6101592143626624558}
-  m_IsBoss: 0
 --- !u!114 &4623415493776387086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyHealth: 5
   m_EnemyData: {fileID: 3825661488020959553}
+  m_IsBoss: 0
 --- !u!114 &3825661488020959553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +309,30 @@ PrefabInstance:
     - target: {fileID: 1628225175564744069, guid: e8282a30a537cee478397fc28247218a, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911333648244174036, guid: e8282a30a537cee478397fc28247218a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.23258671
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911333648244174036, guid: e8282a30a537cee478397fc28247218a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.117862545
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911333648244174036, guid: e8282a30a537cee478397fc28247218a, type: 3}
+      propertyPath: m_Size.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911333648244174036, guid: e8282a30a537cee478397fc28247218a, type: 3}
+      propertyPath: m_Center.x
+      value: 0.45379078
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911333648244174036, guid: e8282a30a537cee478397fc28247218a, type: 3}
+      propertyPath: m_Center.y
+      value: -0.17409082
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911333648244174036, guid: e8282a30a537cee478397fc28247218a, type: 3}
+      propertyPath: m_Center.z
+      value: 0.099293776
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
