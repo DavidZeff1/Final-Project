@@ -29,10 +29,11 @@ public class EnemyHitByBulletHandler : MonoBehaviour
     {
         if (bulletData != null)
         {
-            GameEventSystem.OnEnemyHit?.Invoke(-bulletData.GetBulletDamage());
-            //m_EnemyHealthHandler.SetEnemyHealth(-bulletData.GetBulletDamage());
+            GameEventSystem.OnEnemyHit?.Invoke(this, -bulletData.GetBulletDamage());
+            //Debug.Log("hit");
+            /*m_EnemyHealthHandler.SetEnemyHealth(-bulletData.GetBulletDamage());
 
-            /*if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
+            if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
             {
                 HandleEnemyDeath();
             }*/
@@ -43,6 +44,7 @@ public class EnemyHitByBulletHandler : MonoBehaviour
 
     /*private void HandleEnemyDeath()
     {
+        Debug.Log("dead");
         Destroy(gameObject);
 
         if (m_IsBoss)

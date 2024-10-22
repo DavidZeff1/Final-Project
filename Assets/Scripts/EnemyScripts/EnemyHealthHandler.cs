@@ -19,6 +19,7 @@ public class EnemyHealthHandler : MonoBehaviour
 
         GameEventSystem.OnEnemyHit += SetEnemyHealth;
         m_EnemyHealth = m_EnemyData.GetEnemyHealth();
+
     }
 
     private void OnDestroy()
@@ -31,12 +32,15 @@ public class EnemyHealthHandler : MonoBehaviour
         return m_EnemyHealth;
     }
 
-    public void SetEnemyHealth(float m_HealthToAdd)
+    public void SetEnemyHealth(EnemyHitByBulletHandler enemyHit, float m_HealthToAdd)
     {
-        m_EnemyHealth += m_HealthToAdd;
-        if (m_EnemyHealth <= 0)
+        if (enemyHit == GetComponent<EnemyHitByBulletHandler>())
         {
-            HandleEnemyDeath();
+            m_EnemyHealth += m_HealthToAdd;
+            if (m_EnemyHealth <= 0)
+            {
+                HandleEnemyDeath();
+            }
         }
     }
 

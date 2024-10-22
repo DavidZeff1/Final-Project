@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class GameEventSystem
 {
-    public static Action<float> OnEnemyHit;   
+    public static Action<EnemyHitByBulletHandler, float> OnEnemyHit;   
     public static Action<float> OnPlayerChangeHealth;
     public static Action<float> OnPlayerSetMaxHealth;
     public static Action<float> OnPlayerSetSliderHealth;
