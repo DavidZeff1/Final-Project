@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
@@ -25,7 +26,7 @@ public class ItemPickup : MonoBehaviour
             }
 
             InventoryManager.Instance.AddItem(item, quantity);
-            Destroy(gameObject);
+            StartCoroutine(WaitForAnimationDestroy());
         }
     }
 
@@ -42,6 +43,18 @@ public class ItemPickup : MonoBehaviour
             animator.SetBool("IsCollected", true);
         }
         
+    }
+
+    private IEnumerator WaitForAnimationDestroy()
+    {
+        if (animator != null)
+        {
+            float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+
+            yield return new WaitForSeconds(animationLength);
+        }
+        
+        Destroy(gameObject);
     }
     
 }

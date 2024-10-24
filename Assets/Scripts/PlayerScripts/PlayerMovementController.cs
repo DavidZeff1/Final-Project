@@ -67,11 +67,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void GetVerticalArrowKey()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             m_DeltaY = 1;
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             m_DeltaY = -1;
         }
@@ -79,11 +79,11 @@ public class PlayerMovementController : MonoBehaviour
     
     private void GetHorizontalArrowKey()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             m_DeltaX = -1;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             m_DeltaX = 1;
         }

@@ -13,6 +13,4 @@ public static class GameEventSystem
     public static Action<float, float> OnPlayerShrink;
     public static Action<GameObject> OnEnemyDeath;
     public static Action OnEnemyBossDeath;
-
-
 }

@@ -23,15 +23,15 @@ public class SuperPowerShooterController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !m_PowerCooldowns[0]) UsePower(0);
-        if (Input.GetKeyDown(KeyCode.W) && !m_PowerCooldowns[1]) UsePower(1);
-        if (Input.GetKeyDown(KeyCode.E) && !m_PowerCooldowns[2]) UsePower(2);
-        if (Input.GetKeyDown(KeyCode.R) && !m_PowerCooldowns[3]) UsePower(3);
+        if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKey(KeyCode.Q)) && !m_PowerCooldowns[0]) UsePower(0);
+        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.R)) && !m_PowerCooldowns[1]) UsePower(1);
+        if ((Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKey(KeyCode.E)) && !m_PowerCooldowns[2]) UsePower(2);
+        if ((Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKey(KeyCode.F)) && !m_PowerCooldowns[3]) UsePower(3);
     }
 
-    private void UsePower(int powerIndex)
+    private void UsePower(int i_PowerIndex)
     {
-        switch (powerIndex)
+        switch (i_PowerIndex)
         {
             case 0:
                 if (m_FireballPrefab != null && m_SpawnPoint != null)
@@ -54,8 +54,8 @@ public class SuperPowerShooterController : MonoBehaviour
                 break;
         }
 
-        m_PowerUseEvent?.Raise(powerIndex);
-        StartCoroutine(PowerCooldownRoutine(powerIndex));
+        m_PowerUseEvent?.Raise(i_PowerIndex);
+        StartCoroutine(PowerCooldownRoutine(i_PowerIndex));
     }
 
     private void UseShockWave()

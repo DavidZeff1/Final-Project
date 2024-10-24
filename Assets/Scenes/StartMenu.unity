@@ -1340,20 +1340,20 @@ MonoBehaviour:
   m_text: 'Instructions:
 
 
-    Movement - Arrow Keys.
+    Movement - Arrow Keys or WSAD.
 
-    Special Abilities - "qwer"
-    keys.
+    Special Abilities
+    - "Q,R,E,F" keys or 1,2,3,4.
 
-    ''q'' - Fireball focuses on a enemy,
+    ''Q,1'' - Fireball focuses on a enemy,
 
-    ''w'' - Shock wave pushes
-    enemies away,
+    ''R,2''
+    - Shock wave pushes enemies away,
 
-    ''e'' - Lazer beam to use with the mouse,
+    ''E,3'' - Lazer beam to use with the mouse,
 
-    ''r'' -  Slow
-    motion effect.
+    ''F,4''
+    -  Slow motion effect.
 
     Esc Key to pause.
 
