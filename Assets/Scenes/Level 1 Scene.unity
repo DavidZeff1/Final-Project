@@ -28072,6 +28072,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerShotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 1381993176345621914, guid: 04dcf1fc2a0d0f74fbb3be706289b1b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381993176345621914, guid: 04dcf1fc2a0d0f74fbb3be706289b1b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 3350407952595978359, guid: 04dcf1fc2a0d0f74fbb3be706289b1b4, type: 3}
       propertyPath: m_FlipX
       value: 1
