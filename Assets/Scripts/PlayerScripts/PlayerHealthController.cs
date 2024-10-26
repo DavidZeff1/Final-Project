@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerHealthController : MonoBehaviour
@@ -48,6 +49,7 @@ public class PlayerHealthController : MonoBehaviour
         m_BossCountdownText.text = "Player Died. Game Over!";
         m_BossCountdownText.color = Color.red;
         Destroy(this.gameObject, 1f);
+        SceneManager.LoadScene("GameOverScene");
     }
 
     private void UpdateHealthText()

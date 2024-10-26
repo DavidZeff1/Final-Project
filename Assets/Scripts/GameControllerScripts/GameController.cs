@@ -34,6 +34,10 @@ public class GameController : MonoBehaviour
 
     private void SpawnWithinCircleRadiusOfPlayer(GameObject i_ObjectToSpawn)
     {
+        if (m_PlayerTransform == null)
+        {
+            return;
+        }
         Vector2 randomPosition = Random.insideUnitCircle * m_SpawnRadius;
         Vector3 spawnPosition = (Vector3)randomPosition + m_PlayerTransform.position;
 
@@ -41,7 +45,11 @@ public class GameController : MonoBehaviour
     }
     private void SpawnWithPlayerAsCenter(GameObject m_BossBorderPrefab)
     {
-        Instantiate(m_BossBorderPrefab, m_PlayerTransform.position, Quaternion.identity);
+        if(m_PlayerTransform != null)
+        {
+            Instantiate(m_BossBorderPrefab, m_PlayerTransform.position, Quaternion.identity);
+        }
+        
     }
 
     private void SpawnEnemy()
