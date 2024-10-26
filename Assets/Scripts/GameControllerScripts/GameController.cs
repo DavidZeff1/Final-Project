@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour
             case "Level 1 Scene":
                 SpawnWithinCircleRadiusOfPlayer(m_Boss1Prefab);
                 break;
-            case "Level 2 Scene":
+            case "Level 2 scene":
                 SpawnWithinCircleRadiusOfPlayer(m_Boss2Prefab);
                 break;
             case "Level 3 Scene":

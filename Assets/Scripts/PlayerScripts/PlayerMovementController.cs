@@ -24,14 +24,18 @@ public class PlayerMovementController : MonoBehaviour
         GameEventSystem.OnPlayerChangeSpeed += IncreaseSpeed;
         GameEventSystem.OnPlayerShrink += ShrinkPlayer;
     }
-
-    private void FixedUpdate()
+    private void Update()
     {
         m_DeltaX = 0;
         m_DeltaY = 0;
 
         GetHorizontalArrowKey();
         GetVerticalArrowKey();
+    }
+
+    private void FixedUpdate()
+    {
+       
 
         m_Movement = m_CurrentMovementSpeed * Time.deltaTime * new Vector2(m_DeltaX, m_DeltaY);
         m_PlayerRigidBody.velocity = m_Movement;
