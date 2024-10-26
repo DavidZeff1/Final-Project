@@ -9,6 +9,8 @@ public class EnemyHealthHandler : MonoBehaviour
     [SerializeField] private EnemyDataScript m_EnemyData;
     [SerializeField] private bool m_IsBoss;
     private TMP_Text m_CountdownText;
+    private Animator m_Animator;
+
 
     private void Start()
     {
@@ -19,7 +21,7 @@ public class EnemyHealthHandler : MonoBehaviour
 
         GameEventSystem.OnEnemyHit += SetEnemyHealth;
         m_EnemyHealth = m_EnemyData.GetEnemyHealth();
-
+        m_Animator = GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -39,6 +41,7 @@ public class EnemyHealthHandler : MonoBehaviour
             m_EnemyHealth += m_HealthToAdd;
             if (m_EnemyHealth <= 0)
             {
+                
                 HandleEnemyDeath();
             }
         }
@@ -46,7 +49,10 @@ public class EnemyHealthHandler : MonoBehaviour
 
     private void HandleEnemyDeath()
     {
-        Destroy(gameObject);
+        m_Animator.SetBool("Died", true);
+        StartCoroutine(WaitForAnimationDestroy());
+
+        //Destroy(gameObject);
 
         if (m_IsBoss)
         {
@@ -58,6 +64,18 @@ public class EnemyHealthHandler : MonoBehaviour
             }
 
         }
+    }
+
+    private IEnumerator WaitForAnimationDestroy()
+    {
+        if (m_Animator != null)
+        {
+            float animationLength = m_Animator.GetCurrentAnimatorStateInfo(0).length;
+
+            yield return new WaitForSeconds(animationLength);
+        }
+
+        Destroy(gameObject);
     }
 
 }
