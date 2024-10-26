@@ -17,7 +17,18 @@ public class PlayerWeaponSlot : MonoBehaviour
         currentWeapon.transform.localPosition = new Vector2(0.1f, -0.08f);
         currentWeapon.transform.localRotation = Quaternion.identity;
         currentWeapon.transform.localScale = new Vector2(0.25f, 0.25f);
-        currentWeapon.GetComponent<ShootHandler>().EnableScript();        
+
+        if(currentWeapon.GetComponent<ShootHandler>() != null)
+        {
+            currentWeapon.GetComponent<ShootHandler>().EnableScript();
+        }
+
+        if (currentWeapon.GetComponent<ShotGunShootHandler>() != null)
+        {
+            currentWeapon.GetComponent<ShotGunShootHandler>().EnableScript();
+        }
+
+        
         currentWeapon.transform.GetChild(0).gameObject.SetActive(false);
     }
 }

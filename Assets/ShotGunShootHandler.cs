@@ -4,43 +4,45 @@ using UnityEngine;
 
 public class ShotGunShootHandler : MonoBehaviour
 {
-
-    [SerializeField] private GameObject m_BulletPrefab;
-    [SerializeField] private GameObject m_NoAimBulletPrefab;
-    [SerializeField] private GameObject m_RightBulletPrefab;
-    [SerializeField] private Transform m_GunTransform;
-    [SerializeField] float m_ShootingInterval = 1f;
-    [SerializeField] private string m_Target;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float timeBetweenBarrages = 1f;  
+    [SerializeField] private int numberOfBullets = 20;       
+    [SerializeField] private float bulletSpeed = 5f;           
 
     private void Start()
     {
-        InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
+        StartCoroutine(ShootBurst());
     }
 
-    private void ShootAtTarget()
+    private IEnumerator ShootBurst()
     {
-        GameObject[] targets = GameObject.FindGameObjectsWithTag(m_Target);
-
-        if (targets.Length > 0)
+        while (true)
         {
-            GameObject Bullet = Instantiate(m_BulletPrefab, m_GunTransform.position, m_GunTransform.rotation);
-
-            GameObject bullet2 = Instantiate(m_NoAimBulletPrefab, m_GunTransform.position, m_GunTransform.rotation);
-            Vector3 shootDirection = Quaternion.Euler(0, 0, Random.Range(0, 360)) * Vector3.up;
-            bullet2.GetComponent<Rigidbody2D>().velocity = shootDirection * 5f;
-
-            GameObject bullet3= Instantiate(m_NoAimBulletPrefab, m_GunTransform.position, m_GunTransform.rotation);
-            Vector3 shootDirection2 = Quaternion.Euler(0, 0, Random.Range(0, 360)) * Vector3.down;
-            bullet3.GetComponent<Rigidbody2D>().velocity = shootDirection * 5f;
-
-
-            Bullet.GetComponent<BulletMovementController>().SetTarget(m_Target);
+            yield return new WaitForSeconds(timeBetweenBarrages);
+            for (int i = 0; i < numberOfBullets; i++)
+            {
+                float angle = i * (360f / numberOfBullets);
+                FireBullet(angle);
+            }
         }
     }
-    public void UpdateShootingInterval(float newInterval)
+
+    private void FireBullet(float angle)
     {
-        CancelInvoke(nameof(ShootAtTarget));
-        m_ShootingInterval = newInterval;
-        InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Vector3 shootDirection = Quaternion.Euler(0, 0, angle) * Vector3.up;
+        bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * bulletSpeed;
+    }
+
+    public void DisableScript()
+    {
+        this.enabled = false;
+    }
+
+    public void EnableScript()
+    {
+        this.enabled = true;
     }
 }
+

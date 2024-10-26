@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3881139752352674641}
   - component: {fileID: 3350407952595978359}
-  - component: {fileID: 5372006956600290214}
   - component: {fileID: 4426195959261779244}
   - component: {fileID: 4889934287527484373}
   - component: {fileID: 8983695725676684663}
@@ -89,22 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5372006956600290214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918878323588076941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8113dcf5563199e43a835803084abe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 3773532125507133443, guid: 01106b8d57f65234dacdf99a7450bad4, type: 3}
-  m_GunTransform: {fileID: 3881139752352674641}
-  m_ShootingInterval: 1
-  m_Target: Enemy
 --- !u!114 &4426195959261779244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,12 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0052fb7f021a243a9afed1e53d8736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 3773532125507133443, guid: 768adddc81930ee49b70adb98684ee41, type: 3}
-  m_NoAimBulletPrefab: {fileID: 3773532125507133443, guid: c3089d1f3965f054f8e00a2e3e8df943, type: 3}
-  m_RightBulletPrefab: {fileID: 3773532125507133443, guid: c3089d1f3965f054f8e00a2e3e8df943, type: 3}
-  m_GunTransform: {fileID: 3881139752352674641}
-  m_ShootingInterval: 1
-  m_Target: Enemy
+  bulletPrefab: {fileID: 1148833096826176924, guid: 94f0eb931298d1d43b8aefcd1c157d69, type: 3}
+  firePoint: {fileID: 3881139752352674641}
+  timeBetweenBarrages: 2
+  numberOfBullets: 20
+  bulletSpeed: 5
 --- !u!114 &4889934287527484373
 MonoBehaviour:
   m_ObjectHideFlags: 0
