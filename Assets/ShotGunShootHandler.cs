@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ShotGunShootHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private float timeBetweenBarrages = 1f;  
-    [SerializeField] private int numberOfBullets = 20;       
-    [SerializeField] private float bulletSpeed = 5f;           
+    [SerializeField] private GameObject m_bulletPrefab;
+    [SerializeField] private Transform m_firePoint;
+    [SerializeField] private float m_timeBetweenBarrages = 1f;  
+    [SerializeField] private int m_numberOfBullets = 20;       
+    [SerializeField] private float m_bulletSpeed = 5f;           
 
     private void Start()
     {
@@ -19,10 +19,10 @@ public class ShotGunShootHandler : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(timeBetweenBarrages);
-            for (int i = 0; i < numberOfBullets; i++)
+            yield return new WaitForSeconds(m_timeBetweenBarrages);
+            for (int i = 0; i < m_numberOfBullets; i++)
             {
-                float angle = i * (360f / numberOfBullets);
+                float angle = i * (360f / m_numberOfBullets);
                 FireBullet(angle);
             }
         }
@@ -30,9 +30,9 @@ public class ShotGunShootHandler : MonoBehaviour
 
     private void FireBullet(float angle)
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(m_bulletPrefab, m_firePoint.position, m_firePoint.rotation);
         Vector3 shootDirection = Quaternion.Euler(0, 0, angle) * Vector3.up;
-        bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * bulletSpeed;
+        bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * m_bulletSpeed;
     }
 
     public void DisableScript()

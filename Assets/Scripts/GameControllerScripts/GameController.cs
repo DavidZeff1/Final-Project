@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public GameState m_bossState;
+    public GameState m_normalState;
     [SerializeField] private GameObject m_EnemyPrefab;
     [SerializeField] private GameObject m_Boss1Prefab;
     [SerializeField] private GameObject m_Boss2Prefab;
@@ -24,6 +26,9 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        var beacon = FindObjectOfType<Beacon>();
+        beacon.gameStateChannel.StateEntered(m_normalState);
+
         StartCoroutine(CountdownToBoss());
         InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
         InvokeRepeating(nameof(SpawnEnemy2), 2f, m_SpawnInterval);
@@ -75,6 +80,8 @@ public class GameController : MonoBehaviour
     }
     private void SpawnBoss()
     {
+        var beacon = FindObjectOfType<Beacon>();
+        beacon.gameStateChannel.StateEntered(m_bossState);
         string sceneName = SceneManager.GetActiveScene().name;
         Debug.Log(sceneName);
         switch (sceneName)

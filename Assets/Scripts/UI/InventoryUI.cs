@@ -7,36 +7,36 @@ using UnityEngine.PlayerLoop;
 
 public class InventoryUI : MonoBehaviour
 {
-    public Transform itemsParent;
-    public GameObject inventorySlotPrefab;
+    public Transform m_itemsParent;
+    public GameObject m_inventorySlotPrefab;
 
-    private readonly Dictionary<InventoryItem, GameObject> itemUIs = new Dictionary<InventoryItem, GameObject>();
+    private readonly Dictionary<InventoryItem, GameObject> m_itemUIs = new Dictionary<InventoryItem, GameObject>();
 
-    InventoryManager inventoryManager;
+    InventoryManager m_inventoryManager;
 
     private void OnEnable()
     {
-        inventoryManager = FindObjectOfType<InventoryManager>();
-        if (inventoryManager != null)
+        m_inventoryManager = FindObjectOfType<InventoryManager>();
+        if (m_inventoryManager != null)
         {
-            inventoryManager.OnItemAdded += HandleItemAdded;
-            inventoryManager.OnItemRemoved += HandleItemRemoved;
+            m_inventoryManager.OnItemAdded += HandleItemAdded;
+            m_inventoryManager.OnItemRemoved += HandleItemRemoved;
             RefreshUI();
         }
     }
 
     private void OnDisable()
     {
-        if (inventoryManager != null)
+        if (m_inventoryManager != null)
         {
-            inventoryManager.OnItemAdded -= HandleItemAdded;
-            inventoryManager.OnItemRemoved -= HandleItemRemoved;
+            m_inventoryManager.OnItemAdded -= HandleItemAdded;
+            m_inventoryManager.OnItemRemoved -= HandleItemRemoved;
         }
     }
 
     private void HandleItemAdded(InventoryItem item, int quantity)
     {
-        if (itemUIs.ContainsKey(item))
+        if (m_itemUIs.ContainsKey(item))
         {
             UpdateItemUI(item, quantity);
         }
@@ -48,7 +48,7 @@ public class InventoryUI : MonoBehaviour
     
     private void HandleItemRemoved(InventoryItem item, int quantity)
     {
-        if (itemUIs.ContainsKey(item))
+        if (m_itemUIs.ContainsKey(item))
         {
             UpdateItemUI(item, quantity);
         }
@@ -58,7 +58,7 @@ public class InventoryUI : MonoBehaviour
 
     private void AddNewItemUI(InventoryItem item, int quantity)
     {
-        GameObject slot = Instantiate(inventorySlotPrefab, itemsParent);
+        GameObject slot = Instantiate(m_inventorySlotPrefab, m_itemsParent);
         Image iconImage = slot.GetComponentInChildren<Image>();
         TextMeshProUGUI quantityText = slot.GetComponentInChildren<TextMeshProUGUI>();
         Button slotButton = slot.GetComponent<Button>();
@@ -77,9 +77,9 @@ public class InventoryUI : MonoBehaviour
         }
 
         slotButton.onClick.AddListener(() => OnItemClicked(item));
-        if (!itemUIs.ContainsKey(item))
+        if (!m_itemUIs.ContainsKey(item))
         {
-            itemUIs[item] = slot;
+            m_itemUIs[item] = slot;
         }
     }
     
@@ -103,13 +103,13 @@ public class InventoryUI : MonoBehaviour
 
         if (item.itemType != ItemType.WEAPON)
         {
-            inventoryManager.RemoveItem(item, 1);
+            m_inventoryManager.RemoveItem(item, 1);
             RefreshUI();
         }
         
         if (inventoryContains(item))
         {
-            UpdateItemUI(item, inventoryManager.GetInventory()[item]);
+            UpdateItemUI(item, m_inventoryManager.GetInventory()[item]);
         }
         else
         {
@@ -156,7 +156,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (quantity > 0)
             {
-                TextMeshProUGUI quantityText = itemUIs[item].transform.Find("QuantityText").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI quantityText = m_itemUIs[item].transform.Find("QuantityText").GetComponent<TextMeshProUGUI>();
                 if (quantityText != null)
                 {
                     quantityText.text = quantity.ToString();
@@ -165,8 +165,8 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
-                Destroy(itemUIs[item]);
-                itemUIs.Remove(item);
+                Destroy(m_itemUIs[item]);
+                m_itemUIs.Remove(item);
             }
         }
 
@@ -179,14 +179,14 @@ public class InventoryUI : MonoBehaviour
 
     private void RefreshUI()
     {
-        foreach (Transform child in itemsParent)
+        foreach (Transform child in m_itemsParent)
         {
             Destroy(child.gameObject);
         }
 
-        itemUIs.Clear();
+        m_itemUIs.Clear();
 
-        foreach (var entry in inventoryManager.GetInventory())
+        foreach (var entry in m_inventoryManager.GetInventory())
         {
             AddNewItemUI(entry.Key, entry.Value);
         }
