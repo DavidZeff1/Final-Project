@@ -33,6 +33,9 @@ public class TransitionScene : MonoBehaviour
             case "Level 1 Scene":
                 nextSceneName = "Level 2 scene";
                 break;
+            case "Level 2 scene":
+                nextSceneName = "Level 3 Scene";
+                break;
             case "Level 2 Scene":
                 nextSceneName = "Level 3 Scene";
                 break;

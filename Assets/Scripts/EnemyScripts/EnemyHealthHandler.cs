@@ -52,7 +52,6 @@ public class EnemyHealthHandler : MonoBehaviour
         m_Animator.SetBool("Died", true);
         StartCoroutine(WaitForAnimationDestroy());
 
-        //Destroy(gameObject);
 
         if (m_IsBoss)
         {
