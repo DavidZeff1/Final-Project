@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4426195959261779244}
   - component: {fileID: 4889934287527484373}
   - component: {fileID: 8983695725676684663}
+  - component: {fileID: 1112659287598628444}
   m_Layer: 0
   m_Name: PlayerShotgun
   m_TagString: Untagged
@@ -100,11 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0052fb7f021a243a9afed1e53d8736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1148833096826176924, guid: 94f0eb931298d1d43b8aefcd1c157d69, type: 3}
-  firePoint: {fileID: 3881139752352674641}
-  timeBetweenBarrages: 2
-  numberOfBullets: 20
-  bulletSpeed: 5
+  m_bulletPrefab: {fileID: 1148833096826176924, guid: 94f0eb931298d1d43b8aefcd1c157d69, type: 3}
+  m_firePoint: {fileID: 3881139752352674641}
+  m_timeBetweenBarrages: 1
+  m_numberOfBullets: 20
+  m_bulletSpeed: 5
 --- !u!114 &4889934287527484373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +165,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0352408, y: 0.5}
   m_EdgeRadius: 0
+--- !u!95 &1112659287598628444
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918878323588076941}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3935342374344540970
 GameObject:
   m_ObjectHideFlags: 0

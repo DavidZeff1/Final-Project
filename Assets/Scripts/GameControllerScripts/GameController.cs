@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject m_HealthPotionpPrefab;
     [SerializeField] private GameObject m_BossBorderPrefab;
     [SerializeField] private GameObject m_Enemy2Prefab;
+    [SerializeField] private GameObject m_Enemy3Prefab;
     [SerializeField] private Transform m_PlayerTransform;
     [SerializeField] private TextMeshProUGUI m_BossCountdownText;
     [SerializeField] private float m_CountdownTime = 10f;
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(CountdownToBoss());
         InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
         InvokeRepeating(nameof(SpawnEnemy2), 2f, m_SpawnInterval);
+        InvokeRepeating(nameof(SpawnEnemy3), 3f, m_SpawnInterval);
         InvokeRepeating(nameof(SpawnWeaponSpeedUp), 2f, m_SpawnInterval);
         InvokeRepeating(nameof(SpawnHealthPotion), 3f, m_SpawnInterval);
         InvokeRepeating(nameof(SpawnShootingEnemyPotion), 4f, m_SpawnInterval);
@@ -60,6 +62,10 @@ public class GameController : MonoBehaviour
     private void SpawnEnemy()
     {
         SpawnWithinCircleRadiusOfPlayer(m_EnemyPrefab);
+    }
+    private void SpawnEnemy3()
+    {
+        SpawnWithinCircleRadiusOfPlayer(m_Enemy3Prefab);
     }
     private void SpawnWeaponSpeedUp()
     {
