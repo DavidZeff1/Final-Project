@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         var beacon = FindObjectOfType<Beacon>();
+        //trigger normal state
         beacon.gameStateChannel.StateEntered(m_normalState);
 
         StartCoroutine(CountdownToBoss());
@@ -87,9 +88,10 @@ public class GameController : MonoBehaviour
     private void SpawnBoss()
     {
         var beacon = FindObjectOfType<Beacon>();
+        //trigger bossState
         beacon.gameStateChannel.StateEntered(m_bossState);
+
         string sceneName = SceneManager.GetActiveScene().name;
-        Debug.Log(sceneName);
         switch (sceneName)
         {
             case "Level 1 Scene":

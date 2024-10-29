@@ -31,6 +31,8 @@ public class ShotGunShootHandler : MonoBehaviour
     private void FireBullet(float angle)
     {
         GameObject bullet = Instantiate(m_bulletPrefab, m_firePoint.position, m_firePoint.rotation);
+        // Vector3.up is like the 0 degree and then the angle will adjust it left or right 
+        // in relation to up or north being the 0 degree
         Vector3 shootDirection = Quaternion.Euler(0, 0, angle) * Vector3.up;
         bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * m_bulletSpeed;
     }

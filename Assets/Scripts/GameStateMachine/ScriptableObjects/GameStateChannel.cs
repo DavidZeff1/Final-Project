@@ -12,6 +12,8 @@ public class GameStateChannel : ScriptableObject
     
     public void StateEntered(GameState gameState)
     {
+        //all functions that are listening to "StateEnter" event will be triggered
+        //(ex: gameStateChannel.StateEnter += OnStateEnter; in GameStateListener script)
         StateEnter?.Invoke(gameState);
     }
 

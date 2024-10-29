@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class SpiralShootingAbility : MonoBehaviour
-{
+{//basically the same as the shotGunShooter only here we delay each bullet to give it that spiral effect 
     [SerializeField] private GameObject bulletPrefab; 
     [SerializeField] private Transform firePoint; 
     [SerializeField] private float timeBetweenBarrages = 5f; 

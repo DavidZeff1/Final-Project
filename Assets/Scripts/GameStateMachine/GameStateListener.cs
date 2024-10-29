@@ -15,8 +15,9 @@ public class GameStateListener : MonoBehaviour
     {
         var beacon = FindObjectOfType<Beacon>();
         gameStateChannel = beacon.gameStateChannel;
-
-        gameStateChannel.StateEnter += OnStateEnter;
+        //add function "OnStateEnter" to event "StateEnter", when a stateEnter is triggered then
+        //"OnStateEnter" will be activated with the gamestate as a parameter
+        gameStateChannel.StateEnter += OnStateEnter; 
     }
 
     private void OnStateEnter(GameState state)
