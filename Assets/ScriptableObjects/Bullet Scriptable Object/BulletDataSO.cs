@@ -9,5 +9,4 @@ public class BulletDataSO : ScriptableObject
     public string target;
     public float damageAmount;
     public float speed;
-
 }

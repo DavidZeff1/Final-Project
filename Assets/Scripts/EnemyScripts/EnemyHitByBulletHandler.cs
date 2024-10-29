@@ -7,9 +7,11 @@ public class EnemyHitByBulletHandler : MonoBehaviour
 {
     [SerializeField] private EnemyHealthHandler m_EnemyHealthHandler;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
-
+    [SerializeField] private GameObject m_ExplosionEffect;
+    [SerializeField] private float m_ExplosionRadius = 3f;
+    [SerializeField] private int m_ExplosionDamage = 30;
     private Color m_OriginalColor = Color.white;
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,46 +26,56 @@ public class EnemyHitByBulletHandler : MonoBehaviour
         {
             HandleBulletHit(bulletScript, Color.blue);
         }
+        else if (collision.CompareTag("BulletCannon") && bulletData != null && bulletData.GetBulletTarget().Equals("Enemy"))
+        {
+            TriggerExplosion(bulletData, Color.yellow);
+        }
     }
+
     private void HandleBulletHit(BulletDataScript bulletData, Color hitColor)
     {
         if (bulletData != null)
         {
+            Instantiate(m_ExplosionEffect, transform.position, Quaternion.identity);
+
             GameEventSystem.OnEnemyHit?.Invoke(this, -bulletData.GetBulletDamage());
-            //Debug.Log("hit");
-            /*m_EnemyHealthHandler.SetEnemyHealth(-bulletData.GetBulletDamage());
-
-            if (m_EnemyHealthHandler.GetEnemyHealth() <= 0)
-            {
-                HandleEnemyDeath();
-            }*/
-
             StartCoroutine(ChangeColorTemporarily(hitColor));
         }
     }
 
-    /*private void HandleEnemyDeath()
+    private void TriggerExplosion(BulletDataScript bulletData, Color hitColor)
     {
-        Debug.Log("dead");
-        Destroy(gameObject);
+        Instantiate(m_ExplosionEffect, transform.position, Quaternion.identity);
 
-        if (m_IsBoss)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, m_ExplosionRadius);
+        foreach (Collider2D nearbyObject in colliders)
         {
-            if (m_CountdownText != null)
+            EnemyHitByBulletHandler enemyHandler = nearbyObject.GetComponent<EnemyHitByBulletHandler>();
+            if (enemyHandler != null)
             {
-                m_CountdownText.text = "Boss Killed, Level Completed!\nWill Be Transitioning to next level in a few seconds";
-                m_CountdownText.color = Color.red;
+                GameEventSystem.OnEnemyHit?.Invoke(enemyHandler, -m_ExplosionDamage);
+                StartCoroutine(enemyHandler.ChangeColorTemporarily(hitColor));
             }
-
         }
-    }*/
-    
+
+        Destroy(bulletData.gameObject);
+    }
 
     private IEnumerator ChangeColorTemporarily(Color i_Color)
     {
+        if (m_SpriteRenderer == null) 
+        { 
+            yield break;
+        }
+
         m_SpriteRenderer.color = i_Color;
+        
         yield return new WaitForSeconds(0.1f);
-        m_SpriteRenderer.color = m_OriginalColor;
+        
+        if (m_SpriteRenderer != null)
+        {
+            m_SpriteRenderer.color = m_OriginalColor;
+        }
     }
 }
 

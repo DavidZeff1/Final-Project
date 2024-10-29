@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f61aa30e402a924580bcbef7b437614, type: 3}
+  m_Name: Cannon
+  m_EditorClassIdentifier: 
+  m_ItemName: 
+  m_SpriteIcon: {fileID: 21300000, guid: 663e7cec307c845488d204ae55f4805c, type: 3}
+  itemType: 2
+  m_MaxStack: 1
+  m_EffectAmount: 0
+  m_EffectDuration: 0
+  m_WeaponPrefab: {fileID: 5457361046764238487, guid: 25212686e3821be4f9932ac733cef2f9, type: 3}

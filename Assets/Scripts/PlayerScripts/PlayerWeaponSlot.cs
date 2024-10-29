@@ -28,7 +28,11 @@ public class PlayerWeaponSlot : MonoBehaviour
             currentWeapon.GetComponent<ShotGunShootHandler>().EnableScript();
         }
 
-        
+        if (currentWeapon.GetComponent<CannonShootHandler>() != null)
+        {
+            currentWeapon.GetComponent<CannonShootHandler>().EnableScript();
+        }
+
         currentWeapon.transform.GetChild(0).gameObject.SetActive(false);
     }
 }

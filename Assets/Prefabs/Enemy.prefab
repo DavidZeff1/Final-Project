@@ -277,6 +277,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyHealthHandler: {fileID: 4623415493776387086}
   m_SpriteRenderer: {fileID: 6101592143626624558}
+  m_ExplosionEffect: {fileID: 4403140158111230890, guid: 1d8d6140c9ddcd84599aae9df0be4a4d, type: 3}
+  m_ExplosionRadius: 3
+  m_ExplosionDamage: 30
 --- !u!114 &4623415493776387086
 MonoBehaviour:
   m_ObjectHideFlags: 0

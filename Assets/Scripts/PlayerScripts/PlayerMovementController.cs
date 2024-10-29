@@ -86,10 +86,12 @@ public class PlayerMovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             m_DeltaX = -1;
+            //FlipSprite(false);
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             m_DeltaX = 1;
+            //FlipSprite(true);
         }
     }
 
@@ -132,6 +134,19 @@ public class PlayerMovementController : MonoBehaviour
         yield return new WaitForSeconds(i_Duration);
         m_CurrentMovementSpeed = m_NormalMovementSpeed;
     }
+    private void FlipSprite(bool i_FacingRight)
+    {
+        Vector3 newScale = m_OriginalScale;
+        if (i_FacingRight)
+        {
+            newScale.x = Mathf.Abs(m_OriginalScale.x);
+        }
+        else
+        {
+            newScale.x = -Mathf.Abs(m_OriginalScale.x);
+        }
 
+        transform.localScale = newScale;
+    }
 }
 
