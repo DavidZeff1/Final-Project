@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class PowerUIManager : MonoBehaviour
 {
+    //whoever has the m_PowerUseEvent scriptable object can subscribe to the OnPowerUsed event
+    //(also can trigger the event by doing: m_PowerUseEvent?.Raise(i_PowerIndex);)
+    //so in order to subscribe or trigger the event we need the scriptable object
+
+    //whovever triggers this event needs to pass a int parameter ( m_PowerUseEvent?.Raise(i_PowerIndex); )
+    //and whichever function is subscribed to this event ( m_PowerUseEvent.OnPowerUsed += HandlePowerUse; ) 
+    //needs to take a int paramater ( private void HandlePowerUse(int powerIndex); ) 
+
+
     [SerializeField] private PowerUseEvent m_PowerUseEvent; 
     [SerializeField] private Image[] m_PowerIcons; 
 

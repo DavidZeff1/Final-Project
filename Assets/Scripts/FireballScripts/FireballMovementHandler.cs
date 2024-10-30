@@ -16,13 +16,7 @@ public class FireballMovementHandler : MonoBehaviour
         {
             Vector2 direction = (m_TargetTransform.position - transform.position).normalized;
             m_FireballRB.velocity = direction * m_FireballSpeed;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-        else
-        {
-            Vector2 direction = transform.position;
-            m_FireballRB.velocity = direction * m_FireballSpeed;
+            //calculate the rotation based on the direction and then covert radians to degrees
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }

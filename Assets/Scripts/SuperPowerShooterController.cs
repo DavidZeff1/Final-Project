@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SuperPowerShooterController : MonoBehaviour
 {
+    //whovever triggers this event needs to pass a int parameter ( m_PowerUseEvent?.Raise(i_PowerIndex); )
+    //and whichever function is subscribed to this event ( m_PowerUseEvent.OnPowerUsed += HandlePowerUse; ) 
+    //needs to take a int paramater ( private void HandlePowerUse(int powerIndex); ) 
+
     [SerializeField] private GameObject m_FireballPrefab;
     [SerializeField] private GameObject m_ShockWavePrefab;
     [SerializeField] private Transform m_SpawnPoint;
@@ -68,7 +72,7 @@ public class SuperPowerShooterController : MonoBehaviour
                 StartCoroutine(SlowTime());
                 break;
         }
-
+        //trigger the m_PowerUseEvent 
         m_PowerUseEvent?.Raise(i_PowerIndex);
         StartCoroutine(PowerCooldownRoutine(i_PowerIndex));
     }
