@@ -26,11 +26,6 @@ public class PlayerHealthController : MonoBehaviour
         GameEventSystem.OnPlayerChangeHealth -= SetPlayerHealth;
     }
 
-    /*public float GetPlayerHealth()
-    {
-        return m_PlayerHealth;
-    }*/
-
     public void SetPlayerHealth(float m_HealthToAdd)
     {
         m_PlayerHealth = ( ( m_PlayerHealth + m_HealthToAdd) > m_PlayerMaxHealth) ? m_PlayerMaxHealth : (m_PlayerHealth + m_HealthToAdd);

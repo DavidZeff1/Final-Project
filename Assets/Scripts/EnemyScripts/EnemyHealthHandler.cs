@@ -11,7 +11,6 @@ public class EnemyHealthHandler : MonoBehaviour
     private TMP_Text m_CountdownText;
     private Animator m_Animator;
 
-
     private void Start()
     {
         if (m_IsBoss)
@@ -49,9 +48,12 @@ public class EnemyHealthHandler : MonoBehaviour
 
     private void HandleEnemyDeath()
     {
-        m_Animator.SetBool("Died", true);
-        StartCoroutine(WaitForAnimationDestroy());
+        if (m_Animator != null)
+        {
+            m_Animator.SetBool("Died", true);
+        }
 
+        StartCoroutine(WaitForAnimationDestroy());
 
         if (m_IsBoss)
         {
@@ -67,6 +69,21 @@ public class EnemyHealthHandler : MonoBehaviour
 
     private IEnumerator WaitForAnimationDestroy()
     {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        
+        if (GetComponent<BoxCollider2D>() != null)
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        if (GetComponent<EnemyMovementController>() != null)
+        {
+            GetComponent<EnemyMovementController>().enabled = false;
+        }
+
         if (m_Animator != null)
         {
             float animationLength = m_Animator.GetCurrentAnimatorStateInfo(0).length;

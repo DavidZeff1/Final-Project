@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CannonShootHandler : MonoBehaviour
@@ -8,15 +9,24 @@ public class CannonShootHandler : MonoBehaviour
     [SerializeField] private Transform m_firePoint;
     [SerializeField] private float m_timeBetweenBarrages = 3f;
     [SerializeField] private float m_bulletSpeed = 5f;
-
+    private Vector2 m_OriginalScale;
+    private Sprite m_Sprite;
     private void Start()
     {
+        m_OriginalScale = transform.localScale;        
+        m_Sprite = GetComponent<SpriteRenderer>().sprite;
+        GameEventSystem.OnPlayerFlip += FlipSprite;
         StartCoroutine(ShootContinuously());
     }
 
     private void Update()
     {
         AimTowardsMouse();
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.OnPlayerFlip -= FlipSprite;
     }
 
     private IEnumerator ShootContinuously()
@@ -43,6 +53,21 @@ public class CannonShootHandler : MonoBehaviour
         Vector2 shootDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - m_firePoint.position).normalized;
         
         bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * m_bulletSpeed;
+    }
+    private void FlipSprite(bool i_FacingRight)
+    {
+        Vector2 newScale = m_OriginalScale;
+
+        if (i_FacingRight)
+        {
+            newScale.x = Mathf.Abs(m_OriginalScale.x);
+        }
+        else
+        {
+            newScale.x = -Mathf.Abs(m_OriginalScale.x);
+        }
+
+        transform.localScale = newScale;
     }
 
     public void DisableScript()

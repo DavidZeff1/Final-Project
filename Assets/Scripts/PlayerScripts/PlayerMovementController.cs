@@ -14,16 +14,21 @@ public class PlayerMovementController : MonoBehaviour
     private float m_DeltaX;
     private float m_DeltaY;
     private BoxCollider2D m_BoxCollider;
-    private Vector3 m_OriginalScale;
+    private Vector2 m_OriginalScale;
+    private Vector2 m_FlipScale;
+    private Vector2 m_ShrinkScale;
 
     private void Start()
     {
         m_BoxCollider = GetComponent<BoxCollider2D>();
         m_OriginalScale = transform.localScale;
+        m_FlipScale = new Vector2(m_OriginalScale.x, m_OriginalScale.y);
+        m_ShrinkScale = new Vector2(1, 1);
         m_CurrentMovementSpeed = m_NormalMovementSpeed;
         GameEventSystem.OnPlayerChangeSpeed += IncreaseSpeed;
         GameEventSystem.OnPlayerShrink += ShrinkPlayer;
     }
+
     private void Update()
     {
         m_DeltaX = 0;
@@ -35,8 +40,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
-
         m_Movement = m_CurrentMovementSpeed * Time.deltaTime * new Vector2(m_DeltaX, m_DeltaY);
         m_PlayerRigidBody.velocity = m_Movement;
 
@@ -86,12 +89,14 @@ public class PlayerMovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             m_DeltaX = -1;
-            //FlipSprite(false);
+            FlipSprite(false);
+            GameEventSystem.OnPlayerFlip?.Invoke(false);
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             m_DeltaX = 1;
-            //FlipSprite(true);
+            FlipSprite(true);
+            GameEventSystem.OnPlayerFlip?.Invoke(true);
         }
     }
 
@@ -103,12 +108,13 @@ public class PlayerMovementController : MonoBehaviour
 
     public void ShrinkPlayer(float i_ScaleChange, float i_SizeChangeTime)
     {
-        transform.localScale = m_OriginalScale * i_ScaleChange;
+        m_ShrinkScale = new Vector2(i_ScaleChange, i_ScaleChange);
         if (m_BoxCollider != null)
         {
             m_BoxCollider.size *= i_ScaleChange;
         }
 
+        ApplyCombinedScale();
         StartCoroutine(ResetSizeAfterDelay(i_SizeChangeTime));
 
     }
@@ -117,16 +123,13 @@ public class PlayerMovementController : MonoBehaviour
     {
         yield return new WaitForSeconds(i_SizeChangeTime);
 
-        transform.localScale = m_OriginalScale;
-    }
-
-    public void ResetSize()
-    {
-        transform.localScale = m_OriginalScale;
+        m_ShrinkScale = new Vector2(1, 1);
         if (m_BoxCollider != null)
         {
-            m_BoxCollider.size /= m_OriginalScale.magnitude;
+            m_BoxCollider.size /= m_ShrinkScale.x;
         }
+
+        ApplyCombinedScale();
     }
 
     private IEnumerator ResetSpeedAfterDuration(float i_Duration)
@@ -134,19 +137,24 @@ public class PlayerMovementController : MonoBehaviour
         yield return new WaitForSeconds(i_Duration);
         m_CurrentMovementSpeed = m_NormalMovementSpeed;
     }
+
     private void FlipSprite(bool i_FacingRight)
     {
-        Vector3 newScale = m_OriginalScale;
         if (i_FacingRight)
         {
-            newScale.x = Mathf.Abs(m_OriginalScale.x);
+            m_FlipScale.x = Mathf.Abs(m_OriginalScale.x);
         }
         else
         {
-            newScale.x = -Mathf.Abs(m_OriginalScale.x);
+            m_FlipScale.x = -Mathf.Abs(m_OriginalScale.x);
         }
 
-        transform.localScale = newScale;
+        ApplyCombinedScale();
+    }
+
+    private void ApplyCombinedScale()
+    {
+        transform.localScale = new Vector3(m_FlipScale.x * m_ShrinkScale.x, m_FlipScale.y * m_ShrinkScale.y, 1);
     }
 }
 
