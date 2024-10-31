@@ -74,4 +74,11 @@ public class InventoryManager : MonoBehaviour
         return inventory;
     }
 
+    public void ResetInventory()
+    {
+        inventory.Clear();
+        OnItemRemoved = null;
+        OnItemAdded = null;
+    }
+
 }

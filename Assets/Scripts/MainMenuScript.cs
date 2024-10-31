@@ -9,6 +9,11 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayGame()
     {
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.ResetInventory();
+        }
+
         SceneManager.LoadScene("Level 1 Scene");
     }
     public void QuitGame()
