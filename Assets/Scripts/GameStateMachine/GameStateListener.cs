@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameStateListener : MonoBehaviour
 {
-    [SerializeField] private Light environmentLight;
     [SerializeField] private AudioSource musicSource;
     public AudioClip normalMusic;
     public AudioClip nightmareMusic;
@@ -25,21 +24,16 @@ public class GameStateListener : MonoBehaviour
         switch (state.stateSO.stateName)
         {
             case "Normal Mode":
-                SetEnvironment(Color.white, 1f, normalMusic);
+                SetEnvironment( normalMusic);
                 break;
             case "Nightmare Mode":
-                SetEnvironment(Color.red, 0.2f, nightmareMusic);
+                SetEnvironment( nightmareMusic);
                 break;
         }
     }
 
-    private void SetEnvironment(Color lightColor, float intensity, AudioClip music)
+    private void SetEnvironment(AudioClip music)
     {
-        if (environmentLight != null)
-        {
-            environmentLight.color = lightColor;
-            environmentLight.intensity = intensity;
-        }
 
         if (musicSource != null && music != null)
         {
