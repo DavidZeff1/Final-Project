@@ -22,22 +22,51 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_BossCountdownText;
     [SerializeField] private float m_CountdownTime = 10f;
     private bool m_BossFightStarted = false;
+    private string m_sceneName;
     [SerializeField] private float m_SpawnRadius = 5f; 
     [SerializeField] private float m_SpawnInterval = 5f; 
 
     private void Start()
     {
+        m_sceneName = SceneManager.GetActiveScene().name;
         var beacon = FindObjectOfType<Beacon>();
         //trigger normal state
         beacon.gameStateChannel.StateEntered(m_normalState);
 
         StartCoroutine(CountdownToBoss());
-        InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
-        InvokeRepeating(nameof(SpawnEnemy2), 2f, m_SpawnInterval);
-        InvokeRepeating(nameof(SpawnEnemy3), 3f, m_SpawnInterval);
-        InvokeRepeating(nameof(SpawnWeaponSpeedUp), 2f, m_SpawnInterval);
-        InvokeRepeating(nameof(SpawnHealthPotion), 3f, m_SpawnInterval);
-        InvokeRepeating(nameof(SpawnShootingEnemyPotion), 4f, m_SpawnInterval);
+        switch (m_sceneName)
+        {
+            case "Level 1 Scene":
+
+                InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnEnemy2), 2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnWeaponSpeedUp), 2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnHealthPotion), 3f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnShootingEnemy), 4f, m_SpawnInterval);
+                break;
+            case "Level 2 scene":
+                InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnEnemy2), 1.5f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnEnemy3), 3f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnWeaponSpeedUp), 2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnHealthPotion), 3f, m_SpawnInterval);
+                break;
+            case "Level 2 Scene":
+                InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnEnemy2), 1.5f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnEnemy3), 2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnWeaponSpeedUp), 2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnHealthPotion), 2f, m_SpawnInterval);
+                break;
+            case "Level 3 Scene":
+                InvokeRepeating(nameof(SpawnEnemy), 1f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnEnemy2), 1.2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnEnemy3), 3f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnWeaponSpeedUp), 2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnHealthPotion), 2f, m_SpawnInterval);
+                InvokeRepeating(nameof(SpawnShootingEnemy), 2f, m_SpawnInterval);
+                break;
+        }
     }
 
     private void SpawnWithinCircleRadiusOfPlayer(GameObject i_ObjectToSpawn)
@@ -76,7 +105,7 @@ public class GameController : MonoBehaviour
     {
         SpawnWithinCircleRadiusOfPlayer(m_HealthPotionpPrefab);
     }
-    private void SpawnShootingEnemyPotion()
+    private void SpawnShootingEnemy()
     {
         SpawnWithinCircleRadiusOfPlayer(m_ShootingEnemyPrefab);
     }
@@ -91,8 +120,7 @@ public class GameController : MonoBehaviour
         //trigger bossState
         beacon.gameStateChannel.StateEntered(m_bossState);
 
-        string sceneName = SceneManager.GetActiveScene().name;
-        switch (sceneName)
+        switch (m_sceneName)
         {
             case "Level 1 Scene":
                 SpawnWithinCircleRadiusOfPlayer(m_Boss1Prefab);

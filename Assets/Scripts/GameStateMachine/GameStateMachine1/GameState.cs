@@ -60,8 +60,6 @@ public class GameState : MonoBehaviour
         gameStateChannel.StateEnter(this);
         isCurrentState = true;
         wasTransitionInto = true;
-
-        
     }
 
     private void StateExit(GameState next)
