@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Enemy2.1
   m_EditorClassIdentifier: 
   characterName: 
-  health: 5
+  health: 8
   movementSpeed: 3
   damage: 1

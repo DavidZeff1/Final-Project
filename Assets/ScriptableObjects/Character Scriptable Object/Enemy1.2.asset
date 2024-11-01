@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Enemy1.2
   m_EditorClassIdentifier: 
   characterName: Gun Enemy
-  health: 7
+  health: 10
   movementSpeed: 1.5
   damage: 1

@@ -22,8 +22,7 @@ public class ShotGunShootHandler : MonoBehaviour
             yield return new WaitForSeconds(m_timeBetweenBarrages);
             for (int i = 0; i < m_numberOfBullets; i++)
             {
-                float angle = i * (360f / m_numberOfBullets);
-                FireBullet(angle);
+                FireBullet(i * (360f / m_numberOfBullets));
             }
         }
     }
@@ -31,9 +30,7 @@ public class ShotGunShootHandler : MonoBehaviour
     private void FireBullet(float angle)
     {
         GameObject bullet = Instantiate(m_bulletPrefab, m_firePoint.position, m_firePoint.rotation);
-        // Vector3.up is like the 0 degree and then the angle will adjust it left or right 
-        // in relation to up or north being the 0 degree
-        Vector3 shootDirection = Quaternion.Euler(0, 0, angle) * Vector3.up;
+        Vector3 shootDirection = new(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0f);
         bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * m_bulletSpeed;
     }
 

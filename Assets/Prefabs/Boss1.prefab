@@ -208,11 +208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8257488ec19ac48a09b55871efa470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3773532125507133443, guid: c3089d1f3965f054f8e00a2e3e8df943, type: 3}
-  firePoint: {fileID: 513578733881735991}
-  timeBetweenBarrages: 2.38
-  timeBetweenBullets: 0.05
-  numberOfBullets: 20
+  m_bulletPrefab: {fileID: 3773532125507133443, guid: c3089d1f3965f054f8e00a2e3e8df943, type: 3}
+  m_firePoint: {fileID: 513578733881735991}
+  m_timeBetweenBarrages: 5
+  m_timeBetweenBullets: 0.05
+  m_shootSpeed: 5
+  m_numberOfBullets: 20
 --- !u!50 &1671821981834550371
 Rigidbody2D:
   serializedVersion: 4

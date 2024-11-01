@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   characterName: Player
-  health: 97
+  health: 100
   movementSpeed: 10
   damage: 0

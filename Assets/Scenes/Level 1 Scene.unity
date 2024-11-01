@@ -27720,7 +27720,7 @@ MonoBehaviour:
   m_Enemy3Prefab: {fileID: 7275646615069935159, guid: 02a71e2ef59e421499d7698f568a1945, type: 3}
   m_PlayerTransform: {fileID: 1714852064}
   m_BossCountdownText: {fileID: 891575113}
-  m_CountdownTime: 45
+  m_CountdownTime: 5
   m_SpawnRadius: 12
   m_SpawnInterval: 7
 --- !u!4 &213757306
@@ -29914,6 +29914,10 @@ PrefabInstance:
       propertyPath: m_BossCountdownText
       value: 
       objectReference: {fileID: 891575113}
+    - target: {fileID: 4749428880511306599, guid: 72e0655f5ed132444a773c7e0f2b303f, type: 3}
+      propertyPath: m_PlayerHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4749428880511306599, guid: 72e0655f5ed132444a773c7e0f2b303f, type: 3}
       propertyPath: m_BossCountdownText
       value: 
