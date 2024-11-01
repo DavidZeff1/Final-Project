@@ -11,7 +11,13 @@ public class ShootHandler : MonoBehaviour
 
     private void Start()
     {
+        GameEventSystem.OnPlayerUpdateShootingInterval += UpdateShootingInterval;
         InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.OnPlayerUpdateShootingInterval -= UpdateShootingInterval;
     }
 
     private void ShootAtTarget()
@@ -30,6 +36,7 @@ public class ShootHandler : MonoBehaviour
         m_ShootingInterval = newInterval;
         InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
     }
+
     public void DisableScript()
     {
         this.enabled = false;

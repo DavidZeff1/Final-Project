@@ -14,4 +14,5 @@ public static class GameEventSystem
     public static Action<GameObject> OnEnemyDeath;
     public static Action OnEnemyBossDeath;
     public static Action<bool> OnPlayerFlip;
+    public static Action<float> OnPlayerUpdateShootingInterval;
 }
