@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 9130759468164015156, guid: a99a73d6a9d74e548949c64ba63b035a, type: 3}
   m_firePoint: {fileID: 979919308987604916}
-  m_timeBetweenBarrages: 2.5
+  m_timeBetweenBarrages: 2.2
   m_bulletSpeed: 4.5
 --- !u!114 &-8754262695915772676
 MonoBehaviour:

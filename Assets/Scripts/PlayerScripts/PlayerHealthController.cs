@@ -8,19 +8,18 @@ using UnityEngine.SceneManagement;
 public class PlayerHealthController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_PlayerHealthText;
-    [SerializeField] private float m_PlayerMaxHealth;
+    [SerializeField] private float m_PlayerMaxHealth = 100f;
     [SerializeField] private float m_PlayerHealth;
     [SerializeField] private PlayerDataScript m_PlayerData;
     [SerializeField] TextMeshProUGUI m_BossCountdownText;
 
     private void Start()
     {
-        m_PlayerHealth = m_PlayerData.GetEnemyHealth();
         UpdateHealthText();
         GameEventSystem.OnPlayerSetMaxHealth?.Invoke(m_PlayerMaxHealth);
         GameEventSystem.OnPlayerChangeHealth += SetPlayerHealth;
-
     }
+
     private void OnDestroy()
     {
         GameEventSystem.OnPlayerChangeHealth -= SetPlayerHealth;
