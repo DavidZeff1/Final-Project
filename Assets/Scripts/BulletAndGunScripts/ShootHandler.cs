@@ -36,7 +36,7 @@ public class ShootHandler : MonoBehaviour
     {
         CancelInvoke(nameof(ShootAtTarget));
         m_ShootingInterval = m_ShootingInterval - newInterval*m_SlowerIntervalSpeed;
-        if (m_ShootingInterval <= 0)
+        if (m_ShootingInterval <= 0.01f)
         {
             m_ShootingInterval = m_MinTimeBetweenShooting;
         }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public InventoryItem item;
-    public int quantity = 1;
+    [SerializeField] public InventoryItem item;
+    [SerializeField] public int quantity = 1;
     private Animator animator;
     private bool isCollected = false;
 

@@ -12,6 +12,7 @@ public class CannonShootHandler : MonoBehaviour
     [SerializeField] private float m_bulletSpeed = 5f;
     private Vector2 m_OriginalScale;
     private Sprite m_Sprite;
+    
     private void Start()
     {
         m_OriginalScale = transform.localScale;        
@@ -52,7 +53,7 @@ public class CannonShootHandler : MonoBehaviour
     {
         CancelInvoke(nameof(FireBullet));
         m_timeBetweenBarrages = m_timeBetweenBarrages - newInterval;
-        if (m_timeBetweenBarrages <= 0)
+        if (m_timeBetweenBarrages <= 0.01f)
         {
             m_timeBetweenBarrages = m_MinTimeBetweenBarrages;
         }

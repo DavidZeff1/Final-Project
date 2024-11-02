@@ -48,6 +48,7 @@ MonoBehaviour:
   m_BulletPrefab: {fileID: 3773532125507133443, guid: 768adddc81930ee49b70adb98684ee41, type: 3}
   m_GunTransform: {fileID: 5486846543828685123}
   m_ShootingInterval: 1
+  m_MinTimeBetweenShooting: 0.1
   m_Target: Player
 --- !u!212 &7712306510662332098
 SpriteRenderer:
