@@ -8,6 +8,7 @@ public class CannonShootHandler : MonoBehaviour
     [SerializeField] private GameObject m_bulletPrefab;
     [SerializeField] private Transform m_firePoint;
     [SerializeField] private float m_timeBetweenBarrages = 3f;
+    [SerializeField] private float m_MinTimeBetweenBarrages = 0.2f;
     [SerializeField] private float m_bulletSpeed = 5f;
     private Vector2 m_OriginalScale;
     private Sprite m_Sprite;
@@ -16,7 +17,8 @@ public class CannonShootHandler : MonoBehaviour
         m_OriginalScale = transform.localScale;        
         m_Sprite = GetComponent<SpriteRenderer>().sprite;
         GameEventSystem.OnPlayerFlip += FlipSprite;
-        StartCoroutine(ShootContinuously());
+        GameEventSystem.OnPlayerUpdateShootingInterval += UpdateShootingInterval;
+        InvokeRepeating(nameof(FireBullet), m_timeBetweenBarrages, m_timeBetweenBarrages);
     }
 
     private void Update()
@@ -27,15 +29,7 @@ public class CannonShootHandler : MonoBehaviour
     private void OnDestroy()
     {
         GameEventSystem.OnPlayerFlip -= FlipSprite;
-    }
-
-    private IEnumerator ShootContinuously()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(m_timeBetweenBarrages);
-            FireBullet();
-        }
+        GameEventSystem.OnPlayerUpdateShootingInterval -= UpdateShootingInterval;
     }
 
     private void AimTowardsMouse()
@@ -54,6 +48,18 @@ public class CannonShootHandler : MonoBehaviour
         
         bullet.GetComponent<Rigidbody2D>().velocity = shootDirection * m_bulletSpeed;
     }
+    public void UpdateShootingInterval(float newInterval)
+    {
+        CancelInvoke(nameof(FireBullet));
+        m_timeBetweenBarrages = m_timeBetweenBarrages - newInterval;
+        if (m_timeBetweenBarrages <= 0)
+        {
+            m_timeBetweenBarrages = m_MinTimeBetweenBarrages;
+        }
+
+        InvokeRepeating(nameof(FireBullet), m_timeBetweenBarrages, m_timeBetweenBarrages);
+    }
+
     private void FlipSprite(bool i_FacingRight)
     {
         Vector2 newScale = m_OriginalScale;

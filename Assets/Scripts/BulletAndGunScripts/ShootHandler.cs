@@ -7,7 +7,9 @@ public class ShootHandler : MonoBehaviour
     [SerializeField] private GameObject m_BulletPrefab;   
     [SerializeField] private Transform m_GunTransform;    
     [SerializeField] float m_ShootingInterval = 1f;
+    [SerializeField] float m_MinTimeBetweenShooting = 0.1f;
     [SerializeField] private string m_Target;
+    private float m_SlowerIntervalSpeed = 0.1f;
 
     private void Start()
     {
@@ -33,7 +35,12 @@ public class ShootHandler : MonoBehaviour
     public void UpdateShootingInterval(float newInterval)
     {
         CancelInvoke(nameof(ShootAtTarget));
-        m_ShootingInterval = newInterval;
+        m_ShootingInterval = m_ShootingInterval - newInterval*m_SlowerIntervalSpeed;
+        if (m_ShootingInterval <= 0)
+        {
+            m_ShootingInterval = m_MinTimeBetweenShooting;
+        }
+
         InvokeRepeating(nameof(ShootAtTarget), m_ShootingInterval, m_ShootingInterval);
     }
 
